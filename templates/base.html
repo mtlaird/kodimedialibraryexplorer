@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Kodi Media Library Explorer</title>
+    {% endif %}
+    <script src="/static/KodiMediaLibraryExplorer.js"></script>
+</head>
+<body>
+{% block content %}{% endblock %}
+</body>
+<footer>
+    <script type="application/javascript">
+        RegisterSearchField("SearchField");
+    </script>
+</footer>
+</html>

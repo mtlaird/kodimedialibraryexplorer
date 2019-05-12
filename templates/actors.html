@@ -1,0 +1,9 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for actor in actors %}
+        <li><a href="/movies/actor/{{ actor['id'] }}">{{ actor['name'] }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

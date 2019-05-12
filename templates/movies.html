@@ -1,0 +1,10 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <p><input type="text" id="SearchField"></p>
+    <ul>
+    {% for movie in movies %}
+        <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

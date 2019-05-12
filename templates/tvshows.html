@@ -1,0 +1,9 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for tvshow in tvshows %}
+        <li>{{ tvshow['title'] }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    Title: {{ movie['title'] }} <br>
+    {% if movie['director'] is string %}
+        Director: <a href="/movies/director/{{ movie['director'] }}">{{ movie['director'] }}</a> <br>
+    {% elif movie['director'] is iterable %}
+        Director:
+        {% for dir in movie['director'] %}
+            <a href="/movies/director/{{ dir }}">{{ dir }}</a>
+        {% endfor %}
+        <br>
+    {% endif %}
+    {% if movie['writer'] is string %}
+        Writer: <a href="/movies/writer/{{ movie['writer'] }}">{{ movie['writer'] }}</a> <br>
+    {% elif movie['writer'] is iterable %}
+        Writer:
+        {% for wri in movie['writer'] %}
+            <a href="/movies/writer/{{ wri }}">{{ wri }}</a>
+        {% endfor %}
+        <br>
+    {% endif %}
+    Premiered: {{ movie['premiered'] }} <br>
+    Production Company: {{ movie['production company'] }} <br>
+    {% if movie['genre'] is string %}
+        Genre: <a href="/movies/genre/{{ movie['genre'] }}">{{ movie['genre'] }}</a> <br>
+    {% elif movie['genre'] is iterable %}
+        Genre:
+        {% for gen in movie['genre'] %}
+            <a href="/movies/genre/{{ gen }}">{{ gen }}</a>
+        {% endfor %}
+    {% endif %}
+    <br>Cast:
+    <ul>
+    {% for actor in actors %}
+        <li><a href="/movies/actor/{{ actor['id'] }}">{{ actor['name'] }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
