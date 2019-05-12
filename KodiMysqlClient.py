@@ -32,7 +32,7 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select idMovie, c00 from movie"
+        query = "select idMovie, c00 from movie order by c00"
         cursor.execute(query)
 
         ret = []
@@ -65,7 +65,7 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select c15, count(*) as count from movie group by c15"
+        query = "select c15, count(*) as count from movie group by c15 order by c15"
         cursor.execute(query)
 
         ret = []
@@ -78,7 +78,7 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select idMovie, c00, premiered from movie where c15 like %s"
+        query = "select idMovie, c00, premiered from movie where c15 like %s order by c00"
         cursor.execute(query, ("%" + director_name + "%",))
 
         ret = []
@@ -90,7 +90,7 @@ class KodiMysqlClient:
     def get_movies_by_writer(self, writer_name):
         cursor = self.cnx.cursor()
 
-        query = "select idMovie, c00, premiered from movie where c06 like %s"
+        query = "select idMovie, c00, premiered from movie where c06 like %s order by c00"
         cursor.execute(query, ("%" + writer_name + "%",))
 
         ret = []
@@ -102,7 +102,7 @@ class KodiMysqlClient:
     def get_movies_by_genre(self, genre):
         cursor = self.cnx.cursor()
 
-        query = "select idMovie, c00, premiered from movie where c14 like %s"
+        query = "select idMovie, c00, premiered from movie where c14 like %s order by c00"
         cursor.execute(query, ("%" + genre + "%",))
         ret = []
         for (idMovie, c00, premiered) in cursor:
@@ -114,7 +114,7 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select actor_id, name from actor"
+        query = "select actor_id, name from actor order by name"
         cursor.execute(query)
 
         ret = []
@@ -152,10 +152,10 @@ class KodiMysqlClient:
                 "inner join actor_link al on m.idMovie = al.media_id " \
                 "inner join actor a on al.actor_id = a.actor_id "
         if actor_name:
-            query += "where a.name = %s"
+            query += "where a.name = %s order by m.c00"
             cursor.execute(query, (actor_name,))
         elif actor_id:
-            query += "where a.actor_id = %s"
+            query += "where a.actor_id = %s order by m.c00"
             cursor.execute(query, (actor_id,))
         else:
             return []
@@ -169,7 +169,7 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select idShow, c00 from tvshow"
+        query = "select idShow, c00 from tvshow order by c00"
         cursor.execute(query)
 
         ret = []
@@ -230,10 +230,10 @@ class KodiMysqlClient:
                 "inner join actor_link al on t.idShow = al.media_id " \
                 "inner join actor a on al.actor_id = a.actor_id "
         if actor_name:
-            query += "where a.name = %s"
+            query += "where a.name = %s order by t.c00"
             cursor.execute(query, (actor_name,))
         elif actor_id:
-            query += "where a.actor_id = %s"
+            query += "where a.actor_id = %s order by t.c00"
             cursor.execute(query, (actor_id,))
         else:
             return []
