@@ -2,3 +2,4 @@ venv/
 __pycache__/
 kodimedialibraryexplorer.log
 .idea/
+config.json

@@ -1,4 +1,5 @@
 import mysql.connector
+import json
 
 
 def strip_array_elements(a):
@@ -18,7 +19,13 @@ def check_for_split(s):
 class KodiMysqlClient:
 
     def __init__(self):
-        self.kodi_mysql_address = "192.168.77.71"
+        try:
+            with open("config.json") as f:
+                config = json.load(f)
+                mysqlserver_host = config["mysqlserver-host"]
+        except IOError:
+            mysqlserver_host = "127.0.0.1"
+        self.kodi_mysql_address = mysqlserver_host
         self.kodi_mysql_video_db = "MyVideos116"
 
         self.cnx = mysql.connector.connect(
