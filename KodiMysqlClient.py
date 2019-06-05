@@ -185,6 +185,27 @@ class KodiMysqlClient:
 
         return ret
 
+    def get_tvshow_info(self, show_name=None, show_id=None):
+
+        cursor = self.cnx.cursor()
+
+        query = "select idShow, c00, c05, c08, c13, c14 from tvshow t "
+
+        if show_name:
+            query += "where t.c00 = %s"
+            cursor.execute(query, (show_name,))
+        elif show_id:
+            query += "where t.idShow = %s"
+            cursor.execute(query, (show_id,))
+        else:
+            return []
+
+        for (idShow, c00, c05, c08, c13, c14) in cursor:
+            return {
+                "id": idShow, "title": c00, "first_aired": c05,
+                "genres": c08, "rated": c13, "studio": c14
+            }
+
     def get_episode_titles_by_tvshow(self, show_name=None, show_id=None):
 
         cursor = self.cnx.cursor()
@@ -211,21 +232,21 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select s.name, count(*) as count from seasons s " \
+        query = "select s.season, count(*) as count from seasons s " \
                 "inner join tvshow t on s.idShow = t.idShow " \
                 "inner join episode e on s.idSeason = e.idSeason "
         if show_name:
-            query += "where t.c00 = %s"
+            query += "where t.c00 = %s group by s.season"
             cursor.execute(query, (show_name,))
         elif show_id:
-            query += "where t.idShow = %s"
+            query += "where t.idShow = %s group by s.season"
             cursor.execute(query, (show_id,))
         else:
             return []
 
         ret = []
-        for (name, count) in cursor:
-            ret.append({"season": name, "episode_count": count})
+        for (season, count) in cursor:
+            ret.append({"season": season, "episode_count": count})
 
         return ret
 
