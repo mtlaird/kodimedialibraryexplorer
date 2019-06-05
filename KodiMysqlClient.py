@@ -203,7 +203,7 @@ class KodiMysqlClient:
         for (idShow, c00, c05, c08, c13, c14) in cursor:
             return {
                 "id": idShow, "title": c00, "first_aired": c05,
-                "genres": c08, "rated": c13, "studio": c14
+                "genre": check_for_split(c08), "rated": c13, "studio": c14
             }
 
     def get_episode_titles_by_tvshow(self, show_name=None, show_id=None):

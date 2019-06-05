@@ -3,7 +3,7 @@
 {% block content %}
     <ul>
     {% for tvshow in tvshows %}
-        <li>{{ tvshow['title'] }}</li>
+        <li><a href="/tvshows/id/{{ tvshow['id'] }}">{{ tvshow['title'] }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

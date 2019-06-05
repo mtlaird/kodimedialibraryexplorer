@@ -1,0 +1,26 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    Title: {{ tvshow['title'] }} <br>
+    First Aired: {{ tvshow['first_aired'] }} <br>
+    Studio: {{ tvshow['studio'] }} <br>
+    {% if tvshow['rating'] is string %}
+        Rating: {{ tvshow['rating'] }}
+    {% endif %}
+    {% if tvshow['genre'] is string %}
+        Genre: <a href="/tvshows/genre/{{ tvshow['genre'] }}">{{ tvshow['genre'] }}</a>
+    {% elif tvshow['genre'] is iterable %}
+        Genre:
+        {% for gen in tvshow['genre'] %}
+            <a href="/tvshows/genre/{{ gen }}">{{ gen }}</a>
+        {% endfor %}
+    {% endif %} <br><br>
+    Episodes:<br>
+    {% for se in episodes %}
+        {% if se['season'] == 0 %}
+            Specials: {{ se['episode_count'] }} episodes <br>
+        {% else %}
+            Season {{ se['season'] }}: {{ se['episode_count'] }} episodes <br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
