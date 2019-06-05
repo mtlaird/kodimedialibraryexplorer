@@ -88,3 +88,11 @@ def movies_by_genre(genre_name):
     db_movies = client.get_movies_by_genre(genre_name)
 
     return render_template("movies.html", movies=db_movies)
+
+
+@app.route("/tvshows/genre/<genre_name>")
+def tvshows_by_genre(genre_name):
+    client = KodiMysqlClient()
+    db_tvshows = client.get_tvshows_by_genre(genre_name)
+
+    return render_template("tvshows.html", tvshows=db_tvshows)

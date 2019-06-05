@@ -271,3 +271,15 @@ class KodiMysqlClient:
             ret.append({"id": idShow, "title": c00})
 
         return ret
+
+    def get_tvshows_by_genre(self, genre):
+
+        cursor = self.cnx.cursor()
+
+        query = "select idShow, c00 from tvshow where c08 like %s order by c00"
+        cursor.execute(query, ("%" + genre + "%",))
+        ret = []
+        for (idShow, c00) in cursor:
+            ret.append({"id": idShow, "title": c00})
+
+        return ret
