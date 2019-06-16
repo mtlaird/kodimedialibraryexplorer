@@ -1,6 +1,7 @@
 {%  extends 'base.html' %}
 
 {% block content %}
+    <p><input type="text" id="SearchField"></p>
     <ul>
     {% for tvshow in tvshows %}
         <li><a href="/tvshows/id/{{ tvshow['id'] }}">{{ tvshow['title'] }}</a></li>
