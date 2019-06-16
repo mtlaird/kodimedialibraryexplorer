@@ -1,7 +1,8 @@
 {%  extends 'base.html' %}
 
 {% block content %}
-    <p><input type="text" id="SearchField"></p>
+    <p><label for="SearchField">Filter:</label><input type="text" id="SearchField">
+    <input type="submit" id="ClearSearchField" value="Clear"></p>
     <ul>
     {% for movie in movies %}
         <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>

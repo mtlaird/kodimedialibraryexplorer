@@ -13,3 +13,19 @@ function RegisterSearchField(FieldID) {
         SearchField.setAttribute("oninput", "SearchListItems(this.value)");
     }
 }
+
+
+function ClearSearchField(FieldID) {
+    let SearchField = document.getElementById(FieldID);
+    if (SearchField != null) {
+        SearchField.value = "";
+        SearchListItems("");
+    }
+}
+
+function RegisterClearButton(ButtonID, FieldID) {
+    let ClearButton = document.getElementById(ButtonID);
+    if (ClearButton != null) {
+        ClearButton.setAttribute("onclick", "ClearSearchField(\"" + FieldID + "\")");
+    }
+}
