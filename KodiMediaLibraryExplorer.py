@@ -1,5 +1,6 @@
 from KodiMysqlClient import KodiMysqlClient
 from flask import Flask, render_template
+import TMDBApi
 app = Flask(__name__)
 
 
@@ -58,28 +59,23 @@ def directors():
     return render_template("directors.html", directors=db_directors)
 
 
-@app.route("/movies/director/<director_name>")
-def movies_by_director(director_name):
+@app.route("/person/<person_name>")
+def person_detail(person_name):
     client = KodiMysqlClient()
-    db_movies = client.get_movies_by_director(director_name)
+    db_movies_dir = client.get_movies_by_director(person_name)
+    db_movies_wri = client.get_movies_by_writer(person_name)
+    db_movies_act = client.get_movies_by_actor(actor_name=person_name)
 
-    return render_template("movies.html", movies=db_movies)
+    try:
+        tmdb_person = TMDBApi.Person(name=person_name)
+    except TMDBApi.TMDBSearchException:
+        return render_template("person.html", db_movies_act=db_movies_act, db_movies_wri=db_movies_wri,
+                               db_movies_dir=db_movies_dir)
 
-
-@app.route("/movies/writer/<writer_name>")
-def movies_by_writer(writer_name):
-    client = KodiMysqlClient()
-    db_movies = client.get_movies_by_writer(writer_name)
-
-    return render_template("movies.html", movies=db_movies)
-
-
-@app.route("/movies/actor/<actor_id>")
-def movies_by_actor(actor_id):
-    client = KodiMysqlClient()
-    db_movies = client.get_movies_by_actor(actor_id=actor_id)
-
-    return render_template("movies.html", movies=db_movies)
+    return render_template("person.html", db_movies_act=db_movies_act, db_movies_wri=db_movies_wri,
+                           db_movies_dir=db_movies_dir, tmdb_movies_act=tmdb_person.get_movies_as_actor(),
+                           tmdb_movies_wri=tmdb_person.get_movies_as_writer(), info=tmdb_person.info,
+                           tmdb_movies_dir=tmdb_person.get_movies_as_director())
 
 
 @app.route("/movies/genre/<genre_name>")

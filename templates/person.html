@@ -1,0 +1,68 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ info['name'] }}</h2>
+    <p>Born: {{ info['birthday'] }} {{ info['place_of_birth'] }}</p>
+
+    {% if tmdb_movies_act|length > 0 or db_movies_act|length > 0 %}
+        <h2>Acting</h2>
+        {% if db_movies_act|length > 0 %}
+            <h3>Movies In Library</h3>
+            <ul>
+            {% for movie in db_movies_act %}
+                <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if tmdb_movies_act|length > 0 %}
+            <h3>Movies (Full List)</h3>
+            <ul>
+            {% for movie in tmdb_movies_act %}
+                <li>{{ movie['title'] }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+    {% if tmdb_movies_dir|length > 0 or db_movies_dir|length > 0 %}
+        <h2>Directing</h2>
+        {% if db_movies_dir|length > 0 %}
+            <h3>Movies In Library</h3>
+            <ul>
+            {% for movie in db_movies_dir %}
+                <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if tmdb_movies_dir|length > 0 %}
+            <h3>Movies (Full List)</h3>
+            <ul>
+            {% for movie in tmdb_movies_dir %}
+                <li>{{ movie['title'] }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+    {% if tmdb_movies_wri|length > 0 or db_movies_wri|length > 0 %}
+        <h2>Writing</h2>
+        {% if db_movies_wri|length > 0 %}
+            <h3>Movies In Library</h3>
+            <ul>
+            {% for movie in db_movies_wri %}
+                <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% if tmdb_movies_wri|length > 0 %}
+            <h3>Movies (Full List)</h3>
+            <ul>
+            {% for movie in tmdb_movies_wri %}
+                <li>{{ movie['title'] }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endif %}
+
+
+{% endblock %}

@@ -4,11 +4,11 @@
     <ul>
     {% for director in directors %}
         {% if director['director'] is string %}
-            <li><a href="/movies/director/{{ director['director'] | urlencode }}">{{ director['director'] }} ({{ director['movie_count'] }})</a></li>
+            <li><a href="/person/{{ director['director'] | urlencode }}">{{ director['director'] }} ({{ director['movie_count'] }})</a></li>
         {% elif director['director'] is iterable %}
             <li>
             {% for dir in director['director'] %}
-                <a href="/movies/director/{{ dir }}">{{ dir }}</a>
+                <a href="/person/{{ dir }}">{{ dir }}</a>
             {% endfor %}
             </li>
         {% endif %}

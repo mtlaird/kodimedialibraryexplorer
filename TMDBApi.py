@@ -14,15 +14,23 @@ def get_titles_from_movie_list(movie_list):
     return ret_list
 
 
+class TMDBSearchException(Exception):
+    pass
+
+
 class Person:
 
     def __init__(self, tmdb_id=None, name=None):
+        self.tmdb_id = None
         if tmdb_id:
             self.tmbd_id = tmdb_id
         elif name:
             temp = tmdb.Search().person(query=name)
             result = temp['results'][0]
             self.tmdb_id = result['id']
+        if not self.tmdb_id:
+            print("TMDB search failed. Search type: 'person' Search string: '{}'".format(name))
+            raise TMDBSearchException
         person = tmdb.People(self.tmdb_id)
 
         self.info = person.info()
