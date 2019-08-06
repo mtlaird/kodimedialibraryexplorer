@@ -138,11 +138,11 @@ class KodiMysqlClient:
                 "inner join actor_link al on m.idMovie = al.media_id " \
                 "inner join actor a on al.actor_id = a.actor_id "
         if movie_title:
-            query += "where m.c00 = %s"
-            cursor.execute(query, (movie_title,))
+            query += "where m.c00 = %s and al.media_type = %s order by cast_order"
+            cursor.execute(query, (movie_title, "movie"))
         elif movie_id:
-            query += "where m.idMovie = %s"
-            cursor.execute(query, (movie_id,))
+            query += "where m.idMovie = %s and al.media_type = %s order by cast_order"
+            cursor.execute(query, (movie_id, "movie"))
         else:
             return []
 
@@ -159,11 +159,11 @@ class KodiMysqlClient:
                 "inner join actor_link al on m.idMovie = al.media_id " \
                 "inner join actor a on al.actor_id = a.actor_id "
         if actor_name:
-            query += "where a.name = %s order by m.c00"
-            cursor.execute(query, (actor_name,))
+            query += "where a.name = %s and al.media_type = %s order by m.c00"
+            cursor.execute(query, (actor_name, "movie"))
         elif actor_id:
-            query += "where a.actor_id = %s order by m.c00"
-            cursor.execute(query, (actor_id,))
+            query += "where a.actor_id = %s and al.media_type = %s order by m.c00"
+            cursor.execute(query, (actor_id, "movie"))
         else:
             return []
 
@@ -258,11 +258,11 @@ class KodiMysqlClient:
                 "inner join actor_link al on t.idShow = al.media_id " \
                 "inner join actor a on al.actor_id = a.actor_id "
         if actor_name:
-            query += "where a.name = %s order by t.c00"
-            cursor.execute(query, (actor_name,))
+            query += "where a.name = %s and al.media_type = %s order by t.c00"
+            cursor.execute(query, (actor_name, "tvshow"))
         elif actor_id:
-            query += "where a.actor_id = %s order by t.c00"
-            cursor.execute(query, (actor_id,))
+            query += "where a.actor_id = %s and al.media_type = %s order by t.c00"
+            cursor.execute(query, (actor_id, "tvshow"))
         else:
             return []
 
