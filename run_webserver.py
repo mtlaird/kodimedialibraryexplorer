@@ -22,5 +22,8 @@ if __name__ == '__main__':
     except IOError:
         raise
 
-    app.root_path = os.getcwd()
+    if "root-path" in app.config:
+        app.root_path = app.config["root-path"]
+    else:
+        app.root_path = os.getcwd()
     app.run(host=app.config["webserver-host"], port=5050)
