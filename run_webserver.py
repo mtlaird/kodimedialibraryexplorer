@@ -10,10 +10,10 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     clean_args = {k: v for k, v in vars(args).items() if v is not None}
-    confg_file = clean_args["config_file"] if "config_file" in clean_args else "config.json"
+    config_file = clean_args["config_file"] if "config_file" in clean_args else "config.json"
 
     try:
-        with open("config.json") as f:
+        with open(config_file) as f:
             config = json.load(f)
             webserver_host = config['webserver-host']
     except FileNotFoundError:
