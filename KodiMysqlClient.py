@@ -1,5 +1,5 @@
 import mysql.connector
-import json
+from flask import current_app
 
 
 def strip_array_elements(a):
@@ -20,12 +20,9 @@ class KodiMysqlClient:
 
     def __init__(self):
         try:
-            with open("config.json") as f:
-                config = json.load(f)
-                mysqlserver_host = config["mysqlserver-host"]
-        except IOError:
-            mysqlserver_host = "127.0.0.1"
-        self.kodi_mysql_address = mysqlserver_host
+            self.kodi_mysql_address = current_app.config["mysqlserver-host"]
+        except KeyError:
+            self.kodi_mysql_address = "127.0.0.1"
         self.kodi_mysql_video_db = "MyVideos116"
 
         self.cnx = mysql.connector.connect(

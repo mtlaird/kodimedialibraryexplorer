@@ -1,9 +1,5 @@
 import tmdbsimple as tmdb
-import json
-
-with open('config.json') as f:
-    config = json.load(f)
-    tmdb.API_KEY = config['tmdb-api-key']
+from flask import current_app
 
 
 def get_titles_from_movie_list(movie_list):
@@ -21,6 +17,7 @@ class TMDBSearchException(Exception):
 class Person:
 
     def __init__(self, tmdb_id=None, name=None):
+        tmdb.API_KEY = current_app.config["tmdb-api-key"]
         self.tmdb_id = None
         if tmdb_id:
             self.tmbd_id = tmdb_id

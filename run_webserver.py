@@ -15,11 +15,12 @@ if __name__ == '__main__':
     try:
         with open(config_file) as f:
             config = json.load(f)
-            webserver_host = config['webserver-host']
+            for key in config:
+                app.config[key] = config[key]
     except FileNotFoundError:
         raise
     except IOError:
         raise
 
     app.root_path = os.getcwd()
-    app.run(host=webserver_host, port=5050)
+    app.run(host=app.config["webserver-host"], port=5050)
