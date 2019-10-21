@@ -37,7 +37,8 @@ class Person:
 
     def get_movies_by_crew_role(self, role_type):
 
-        return [movie for movie in self.movies['crew'] if (movie['department'] == role_type or movie['job'] == role_type)]
+        return [movie for movie in self.movies['crew'] if (movie['department'] == role_type or
+                                                           movie['job'] == role_type)]
 
     def get_movies_as_writer(self):
 

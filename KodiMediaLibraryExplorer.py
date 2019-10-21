@@ -63,8 +63,11 @@ def directors():
 def person_detail(person_name):
     client = KodiMysqlClient()
     db_movies_dir = client.get_movies_by_director(person_name)
+    db_movies_dir_dict = client.convert_db_movie_list_to_dict(db_movies_dir)
     db_movies_wri = client.get_movies_by_writer(person_name)
+    db_movies_wri_dict = client.convert_db_movie_list_to_dict(db_movies_wri)
     db_movies_act = client.get_movies_by_actor(actor_name=person_name)
+    db_movies_act_dict = client.convert_db_movie_list_to_dict(db_movies_act)
 
     try:
         tmdb_person = TMDBApi.Person(name=person_name)
@@ -72,8 +75,8 @@ def person_detail(person_name):
         return render_template("person.html", db_movies_act=db_movies_act, db_movies_wri=db_movies_wri,
                                db_movies_dir=db_movies_dir)
 
-    return render_template("person.html", db_movies_act=db_movies_act, db_movies_wri=db_movies_wri,
-                           db_movies_dir=db_movies_dir, tmdb_movies_act=tmdb_person.get_movies_as_actor(),
+    return render_template("person.html", db_movies_act_dict=db_movies_act_dict, db_movies_wri_dict=db_movies_wri_dict,
+                           db_movies_dir_dict=db_movies_dir_dict, tmdb_movies_act=tmdb_person.get_movies_as_actor(),
                            tmdb_movies_wri=tmdb_person.get_movies_as_writer(), info=tmdb_person.info,
                            tmdb_movies_dir=tmdb_person.get_movies_as_director())
 

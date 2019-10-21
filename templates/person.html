@@ -16,11 +16,25 @@
         {% endif %}
         {% if tmdb_movies_act|length > 0 %}
             <h3>Movies (Full List)</h3>
-            <ul>
+            <table class="movies">
+            <tr><th>Title</th><th>Role</th><th>Release</th><th>Pop</th><th>Avg</th><th>In DB</th></tr>
             {% for movie in tmdb_movies_act %}
-                <li>{{ movie['title'] }}</li>
+                <tr>
+                {% if movie['title'] in db_movies_act_dict %}
+                    <td><a href="/movies/id/{{ db_movies_act_dict[movie['title']] }}">{{ movie['title'] }}</a></td>
+                {% else %}
+                    <td>{{ movie['title'] }}</td>
+                {% endif %}
+                <td>{{ movie['character'] }}</td><td>{{ movie['release_date'] }}</td>
+                    <td>{{ movie['popularity'] }}</td><td>{{ movie['vote_average'] }}</td>
+                {% if movie['title'] in db_movies_act_dict %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>&nbsp</td>
+                {% endif %}
+                </tr>
             {% endfor %}
-            </ul>
+            </table>
         {% endif %}
     {% endif %}
 
@@ -36,11 +50,24 @@
         {% endif %}
         {% if tmdb_movies_dir|length > 0 %}
             <h3>Movies (Full List)</h3>
-            <ul>
+            <table class="movies">
+            <tr><th>Title</th><th>Release</th><th>Pop</th><th>Avg</th><th>In DB</th></tr>
             {% for movie in tmdb_movies_dir %}
-                <li>{{ movie['title'] }}</li>
+                <tr>
+                {% if movie['title'] in db_movies_dir_dict %}
+                    <td><a href="/movies/id/{{ db_movies_dir_dict[movie['title']] }}">{{ movie['title'] }}</a></td>
+                {% else %}
+                    <td>{{ movie['title'] }}</td>
+                {% endif %}
+                <td>{{ movie['release_date'] }}</td><td>{{ movie['popularity'] }}</td><td>{{ movie['vote_average'] }}</td>
+                {% if movie['title'] in db_movies_dir_dict %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>&nbsp</td>
+                {% endif %}
+                </tr>
             {% endfor %}
-            </ul>
+            </table>
         {% endif %}
     {% endif %}
 
@@ -56,11 +83,24 @@
         {% endif %}
         {% if tmdb_movies_wri|length > 0 %}
             <h3>Movies (Full List)</h3>
-            <ul>
+            <table class="movies">
+            <tr><th>Title</th><th>Release</th><th>Pop</th><th>Avg</th><th>In DB</th></tr>
             {% for movie in tmdb_movies_wri %}
-                <li>{{ movie['title'] }}</li>
+                <tr>
+                {% if movie['title'] in db_movies_wri_dict %}
+                    <td><a href="/movies/id/{{ db_movies_wri_dict[movie['title']] }}">{{ movie['title'] }}</a></td>
+                {% else %}
+                    <td>{{ movie['title'] }}</td>
+                {% endif %}
+                <td>{{ movie['release_date'] }}</td><td>{{ movie['popularity'] }}</td><td>{{ movie['vote_average'] }}</td>
+                {% if movie['title'] in db_movies_wri_dict %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>&nbsp</td>
+                {% endif %}
+                </tr>
             {% endfor %}
-            </ul>
+            </table>
         {% endif %}
     {% endif %}
 

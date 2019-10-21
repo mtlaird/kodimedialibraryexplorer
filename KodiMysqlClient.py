@@ -32,6 +32,16 @@ class KodiMysqlClient:
             database=self.kodi_mysql_video_db
         )
 
+    @staticmethod
+    def convert_db_movie_list_to_dict(movie_list):
+
+        ret_dict = {}
+
+        for list_item in movie_list:
+            ret_dict[list_item['title']] = list_item['id']
+
+        return ret_dict
+
     def get_all_movie_titles(self):
 
         cursor = self.cnx.cursor()
