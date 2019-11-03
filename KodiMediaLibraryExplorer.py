@@ -22,8 +22,9 @@ def movie_detail(movie_id):
     client = KodiMysqlClient()
     db_movie = client.get_movie_info(movie_id=movie_id)
     db_actors = client.get_actors_by_movie(movie_id=movie_id)
+    db_tags = client.get_movie_tags(movie_id=movie_id)
 
-    return render_template("movie_detail.html", movie=db_movie, actors=db_actors)
+    return render_template("movie_detail.html", movie=db_movie, actors=db_actors, tags=db_tags)
 
 
 @app.route("/tvshows")
@@ -95,3 +96,19 @@ def tvshows_by_genre(genre_name):
     db_tvshows = client.get_tvshows_by_genre(genre_name)
 
     return render_template("tvshows.html", tvshows=db_tvshows)
+
+
+@app.route("/tags")
+def tags():
+    client = KodiMysqlClient()
+    db_tags = client.get_all_tags()
+
+    return render_template("tags.html", tags=db_tags)
+
+
+@app.route("/tags/<tag_id>")
+def movies_by_tag(tag_id):
+    client = KodiMysqlClient()
+    db_movies = client.get_movie_titles_by_tag(tag_id)
+
+    return render_template("tag_detail.html", movies=db_movies)

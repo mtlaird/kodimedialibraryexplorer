@@ -36,4 +36,12 @@
         <li><a href="/person/{{ actor['name'] }}">{{ actor['name'] }}</a></li>
     {% endfor %}
     </ul>
+    {% if tags|length > 0 %}
+        <br>Tags:
+        <ul>
+        {% for tag in tags %}
+            <li><a href="/tags/{{ tag['tag_id'] }}">{{ tag['tag_name'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {%  endif %}
 {% endblock %}
