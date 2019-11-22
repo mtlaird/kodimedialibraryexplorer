@@ -16,7 +16,7 @@
         {% endif %}
         {% if tmdb_movies_act|length > 0 %}
             <h3>Movies (Full List)</h3>
-            <table class="movies">
+            <table class="movies" id="movies_acting_table">
             <tr><th>Title</th><th>Role</th><th>Release</th><th>Pop</th><th>Avg</th><th>In DB</th></tr>
             {% for movie in tmdb_movies_act %}
                 <tr>
@@ -50,7 +50,7 @@
         {% endif %}
         {% if tmdb_movies_dir|length > 0 %}
             <h3>Movies (Full List)</h3>
-            <table class="movies">
+            <table class="movies" id="movies_directing_table">
             <tr><th>Title</th><th>Release</th><th>Pop</th><th>Avg</th><th>In DB</th></tr>
             {% for movie in tmdb_movies_dir %}
                 <tr>
@@ -83,7 +83,7 @@
         {% endif %}
         {% if tmdb_movies_wri|length > 0 %}
             <h3>Movies (Full List)</h3>
-            <table class="movies">
+            <table class="movies" id="movies_writing_table">
             <tr><th>Title</th><th>Release</th><th>Pop</th><th>Avg</th><th>In DB</th></tr>
             {% for movie in tmdb_movies_wri %}
                 <tr>
@@ -105,4 +105,12 @@
     {% endif %}
 
 
+{% endblock %}
+
+{% block footer_content %}
+<script type="application/javascript">
+    RegisterTableHeader("movies_acting_table");
+    RegisterTableHeader("movies_directing_table");
+    RegisterTableHeader("movies_writing_table");
+</script>
 {% endblock %}
