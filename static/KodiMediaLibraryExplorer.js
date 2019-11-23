@@ -66,15 +66,20 @@ function ReplaceTableContentsWithArray(TableID, TableArray) {
     }
 }
 
-function SortTableArray(TableArray, SortType, SortIndex) {
+function SortTableArray(TableArray, SortType, SortIndex, SortStatus) {
+    let EndSortStatus;
+    if (SortStatus === "Unsorted" || SortStatus === "Ascending") { EndSortStatus = "Descending"; }
+    else { EndSortStatus = "Ascending"; }
     switch (SortType) {
         case "Numeric":
             return TableArray.sort(function (a, b) {
-                return b[SortIndex] - a[SortIndex];
+                if (EndSortStatus === "Ascending") { return a[SortIndex] - b[SortIndex]; }
+                else { return b[SortIndex] - a[SortIndex]; }
             });
         case "String":
             return TableArray.sort(function (a, b) {
-                return a[SortIndex].localeCompare(b[SortIndex]);
+                if (EndSortStatus === "Ascending") { return b[SortIndex].localeCompare(a[SortIndex]); }
+                else { return a[SortIndex].localeCompare(b[SortIndex]); }
             });
         case "HTML":
             return TableArray.sort(function (a, b) {
@@ -91,15 +96,42 @@ function SortTableArray(TableArray, SortType, SortIndex) {
                     b_value = span.textContent || span.innerText;
                 }
                 else { b_value = b[SortIndex]; }
-                return a_value.localeCompare(b_value);
+                if (EndSortStatus === "Ascending") { return b_value.localeCompare(a_value); }
+                else { return a_value.localeCompare(b_value); }
             });
         }
 }
 
+function ClearTableSortStatus(TableID) {
+    let TableHeaderRow = document.getElementById(TableID).getElementsByTagName('tr')[0];
+    let TableHeaderLen = TableHeaderRow.getElementsByTagName('th').length;
+    for (let i=0; i < TableHeaderLen; i ++) {
+        document.getElementById(TableID + i + "-sort-status").innerHTML = "";
+    }
+}
+
+/**
+ * @return {string}
+ */
+function GetSortStatus(TableID, SortIndex) {
+    let SortStatus = document.getElementById(TableID + SortIndex + "-sort-status").innerHTML.charCodeAt(0);
+    if (SortStatus === 9663) { return "Descending"; }
+    if (SortStatus === 9653) { return "Ascending"; }
+    return "Unsorted";
+}
+
 function SortTable(TableID, SortType, SortIndex) {
     let TableArray = BuildArrayFromTableContents(TableID);
-    let SortedTableArray = SortTableArray(TableArray, SortType, SortIndex);
+    let StartSortStatus = GetSortStatus(TableID, SortIndex);
+    let SortedTableArray = SortTableArray(TableArray, SortType, SortIndex, StartSortStatus);
     ReplaceTableContentsWithArray(TableID, SortedTableArray);
+    ClearTableSortStatus(TableID);
+    if (StartSortStatus === "Unsorted" || StartSortStatus === "Ascending") {
+        document.getElementById(TableID + SortIndex + "-sort-status").innerHTML = String.fromCharCode(9663);
+    }
+    else {
+        document.getElementById(TableID + SortIndex + "-sort-status").innerHTML = String.fromCharCode(9653);
+    }
 }
 
 function RegisterTableHeader(TableID) {
@@ -109,6 +141,9 @@ function RegisterTableHeader(TableID) {
         let TableHeaderCell;
         for (let i=0; i < TableHeaderRow.getElementsByTagName('th').length; i++) {
             TableHeaderCell = TableHeaderRow.getElementsByTagName('th')[i];
+            let span = document.createElement("span");
+            span.setAttribute("id", TableID + i + "-sort-status");
+            TableHeaderCell.appendChild(span);
             if (TableHeaderCell.innerText === "Title") {
                 TableHeaderCell.setAttribute("onclick", "SortTable(\"" + TableID + "\", \"HTML\", " + i +")");
             }
