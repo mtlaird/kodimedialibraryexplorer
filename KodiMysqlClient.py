@@ -327,3 +327,14 @@ class KodiMysqlClient:
             ret.append({"tag_id": tag_id, "tag_name": name})
 
         return ret
+
+    def add_tag_to_movie(self, tag_id, movie_id):
+
+        cursor = self.cnx.cursor()
+
+        query = "insert into tag_link (tag_id, media_id, media_type) values (%s, %s, %s)"
+        cursor.execute(query, (tag_id, movie_id, 'movie'))
+
+        self.cnx.commit()
+
+
