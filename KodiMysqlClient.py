@@ -149,6 +149,18 @@ class KodiMysqlClient:
 
         return ret
 
+    def get_movies_from_title_list(self, title_list):
+        cursor = self.cnx.cursor()
+
+        format_strings = ','.join(['%s'] * len(title_list))
+        query = "select idMovie, c00, premiered from movie where c00 IN (%s)" % format_strings
+        cursor.execute(query, title_list)
+        ret = []
+        for (idMovie, c00, premiered) in cursor:
+            ret.append({"id": idMovie, "title": c00, "premiered": premiered})
+
+        return ret
+
     def get_all_actors(self):
 
         cursor = self.cnx.cursor()
@@ -328,6 +340,18 @@ class KodiMysqlClient:
 
         return ret
 
+    def get_tag_by_name(self, tagname):
+
+        cursor = self.cnx.cursor()
+
+        query = "select tag_id, name from tag where name = %s"
+        cursor.execute(query, (tagname,))
+
+        for (tag_id, name) in cursor:
+            return {"tag_id": tag_id, "tag_name": name}
+
+        return {}
+
     def add_tag_to_movie(self, tag_id, movie_id):
 
         cursor = self.cnx.cursor()
@@ -336,5 +360,3 @@ class KodiMysqlClient:
         cursor.execute(query, (tag_id, movie_id, 'movie'))
 
         self.cnx.commit()
-
-

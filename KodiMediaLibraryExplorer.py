@@ -1,6 +1,10 @@
-from KodiMysqlClient import KodiMysqlClient
 from flask import Flask, render_template
+
 import TMDBApi
+import csv
+import json
+from KodiMysqlClient import KodiMysqlClient
+
 app = Flask(__name__)
 
 
@@ -112,3 +116,30 @@ def movies_by_tag(tag_id):
     db_movies = client.get_movie_titles_by_tag(tag_id)
 
     return render_template("tag_detail.html", movies=db_movies)
+
+
+@app.route("/taglists/<list_name>")
+def taglist_by_name(list_name):
+    client = KodiMysqlClient()
+    with open('taglists_meta/' + list_name + '.json') as f:
+        taglist = json.load(f)
+
+    taglist_movies = []
+    with open('taglists_data/' + taglist['source']) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            taglist_movies.append(row)
+
+    db_tag = client.get_tag_by_name(taglist['name'])
+    if db_tag:
+        db_tag_movies = client.get_movie_titles_by_tag(db_tag['tag_id'])
+        db_tag_movies_dict = client.convert_db_movie_list_to_dict(db_tag_movies)
+    else:
+        db_tag_movies_dict = {}
+
+    movies_tuple = tuple(movie['title'] for movie in taglist_movies)
+    db_movies = client.get_movies_from_title_list(movies_tuple)
+    db_movies_dict = client.convert_db_movie_list_to_dict(db_movies)
+
+    return render_template("tag_list_detail.html", taglist=taglist, taglist_movies=taglist_movies, db_tag=db_tag,
+                           db_movies_dict=db_movies_dict, db_tag_movies_dict=db_tag_movies_dict)

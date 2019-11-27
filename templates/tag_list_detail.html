@@ -1,0 +1,32 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    {% if db_tag|length > 0%}
+        Title: <a href="/tags/{{ db_tag['tag_id'] }}">{{ taglist['name'] }}</a> <br>
+    {% else %}
+        Title: {{ taglist['name'] }} <br>
+    {% endif %}
+    Description: {{ taglist['description'] }} <br>
+    <br>
+    <table class="movies">
+        <tr><th>Year</th><th>Title</th><th>In DB</th><th>Has Tag</th></tr>
+    {% for movie in taglist_movies %}
+        <tr><td>{{ movie['year'] }}</td>
+            {% if movie['title'] in db_movies_dict %}
+                <td><a href="/movies/id/{{ db_movies_dict[movie['title']] }}">{{ movie['title'] }}</a></td>
+                <td>Yes</td>
+                {% if movie['title'] in db_tag_movies_dict %}
+                    <td>Yes</td>
+                {% else %}
+                    <td>&nbsp</td>
+                {% endif %}
+            {% else %}
+                <td>{{ movie['title'] }}</td>
+                <td>&nbsp</td>
+                <td>&nbsp</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
