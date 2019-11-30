@@ -1,11 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 import TMDBApi
-import csv
-import json
+import logging
 from KodiMysqlClient import KodiMysqlClient
+from KodiTaglist import Taglist
 
 app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 
 @app.route("/")
@@ -118,28 +119,21 @@ def movies_by_tag(tag_id):
     return render_template("tag_detail.html", movies=db_movies)
 
 
-@app.route("/taglists/<list_name>")
+@app.route("/taglists/<list_name>", methods=["GET", "POST"])
 def taglist_by_name(list_name):
+    tags_added = None
     client = KodiMysqlClient()
-    with open('taglists_meta/' + list_name + '.json') as f:
-        taglist = json.load(f)
+    taglist = Taglist(list_name)
 
-    taglist_movies = []
-    with open('taglists_data/' + taglist['source']) as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            taglist_movies.append(row)
-
-    db_tag = client.get_tag_by_name(taglist['name'])
-    if db_tag:
-        db_tag_movies = client.get_movie_titles_by_tag(db_tag['tag_id'])
-        db_tag_movies_dict = client.convert_db_movie_list_to_dict(db_tag_movies)
-    else:
-        db_tag_movies_dict = {}
-
-    movies_tuple = tuple(movie['title'] for movie in taglist_movies)
-    db_movies = client.get_movies_from_title_list(movies_tuple)
+    db_tag_movies_dict, db_tag = client.get_movies_dict_by_tag_name(taglist.metadata['name'])
+    db_movies = client.get_movies_from_title_list(taglist.movies_tuple())
     db_movies_dict = client.convert_db_movie_list_to_dict(db_movies)
 
-    return render_template("tag_list_detail.html", taglist=taglist, taglist_movies=taglist_movies, db_tag=db_tag,
-                           db_movies_dict=db_movies_dict, db_tag_movies_dict=db_tag_movies_dict)
+    if request.method == "POST" and request.form['add_tags'] == 'true':
+        db_movies_no_tag_dict = client.get_dict_difference(db_movies_dict, db_tag_movies_dict)
+        tags_added = client.add_tag_to_movie_dict(db_tag, db_movies_no_tag_dict)
+        db_tag_movies_dict, db_tag = client.get_movies_dict_by_tag_name(taglist.metadata['name'])
+
+    return render_template("tag_list_detail.html", taglist=taglist.metadata, taglist_movies=taglist.movies,
+                           db_tag=db_tag, db_movies_dict=db_movies_dict, db_tag_movies_dict=db_tag_movies_dict,
+                           tags_added=tags_added)

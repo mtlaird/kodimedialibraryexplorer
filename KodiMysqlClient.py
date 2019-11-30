@@ -42,6 +42,14 @@ class KodiMysqlClient:
 
         return ret_dict
 
+    @staticmethod
+    def get_dict_difference(list1, list2):
+        ret_dict = {}
+        for key in list1:
+            if key not in list2:
+                ret_dict[key] = list1[key]
+        return ret_dict
+
     def get_all_movie_titles(self):
 
         cursor = self.cnx.cursor()
@@ -99,6 +107,15 @@ class KodiMysqlClient:
             ret.append({"id": idMovie, "title": c00})
 
         return ret
+
+    def get_movies_dict_by_tag_name(self, tag_name):
+        tag = self.get_tag_by_name(tag_name)
+
+        if tag:
+            tag_movies = self.get_movie_titles_by_tag(tag['tag_id'])
+            return self.convert_db_movie_list_to_dict(tag_movies), tag
+        else:
+            return {}, tag
 
     def get_all_movie_directors(self):
 
@@ -352,11 +369,22 @@ class KodiMysqlClient:
 
         return {}
 
-    def add_tag_to_movie(self, tag_id, movie_id):
+    def add_tag_to_movie(self, tag_id, movie_id, commit=True):
 
         cursor = self.cnx.cursor()
 
         query = "insert into tag_link (tag_id, media_id, media_type) values (%s, %s, %s)"
         cursor.execute(query, (tag_id, movie_id, 'movie'))
 
+        if commit:
+            self.cnx.commit()
+
+    def add_tag_to_movie_dict(self, tag, movie_dict):
+        tags_added = 0
+        for movie in movie_dict:
+            self.add_tag_to_movie(tag['tag_id'], movie_dict[movie], False)
+            tags_added += 1
+
         self.cnx.commit()
+
+        return tags_added

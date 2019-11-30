@@ -8,6 +8,14 @@
     {% endif %}
     Description: {{ taglist['description'] }} <br>
     <br>
+    <form method="post">
+        <input type="submit" value="Add Tags">
+        <input type="hidden" name="add_tags" value="true">
+    {% if tags_added is not none %}
+        <span>Tags added: {{ tags_added }}</span>
+    {% endif %}
+    </form>
+    <br>
     <table class="movies">
         <tr><th>Year</th><th>Title</th><th>In DB</th><th>Has Tag</th></tr>
     {% for movie in taglist_movies %}
