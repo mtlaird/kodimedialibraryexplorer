@@ -125,11 +125,14 @@ def taglist_by_name(list_name):
     client = KodiMysqlClient()
     taglist = Taglist(list_name)
 
+    if request.method == "POST" and 'create_tag' in request.form and request.form['create_tag'] == 'true':
+        client.create_tag(taglist.metadata['name'])
+
     db_tag_movies_dict, db_tag = client.get_movies_dict_by_tag_name(taglist.metadata['name'])
     db_movies = client.get_movies_from_title_list(taglist.movies_tuple())
     db_movies_dict = client.convert_db_movie_list_to_dict(db_movies)
 
-    if request.method == "POST" and request.form['add_tags'] == 'true':
+    if request.method == "POST" and 'add_tags' in request.form and request.form['add_tags'] == 'true':
         db_movies_no_tag_dict = client.get_dict_difference(db_movies_dict, db_tag_movies_dict)
         tags_added = client.add_tag_to_movie_dict(db_tag, db_movies_no_tag_dict)
         db_tag_movies_dict, db_tag = client.get_movies_dict_by_tag_name(taglist.metadata['name'])

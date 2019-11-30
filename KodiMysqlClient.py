@@ -345,6 +345,15 @@ class KodiMysqlClient:
 
         return ret
 
+    def create_tag(self, tag_name):
+
+        cursor = self.cnx.cursor()
+
+        query = "insert into tag (name) values (%s)"
+        cursor.execute(query, (tag_name,))
+
+        self.cnx.commit()
+
     def get_all_tags(self):
 
         cursor = self.cnx.cursor()

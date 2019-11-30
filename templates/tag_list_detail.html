@@ -9,10 +9,15 @@
     Description: {{ taglist['description'] }} <br>
     <br>
     <form method="post">
+    {% if db_tag|length > 0 %}
         <input type="submit" value="Add Tags">
         <input type="hidden" name="add_tags" value="true">
-    {% if tags_added is not none %}
-        <span>Tags added: {{ tags_added }}</span>
+        {% if tags_added is not none %}
+            <span>Tags added: {{ tags_added }}</span>
+        {% endif %}
+    {% else %}
+        <input type="submit" value="Create Tag">
+        <input type="hidden" name="create_tag" value="true">
     {% endif %}
     </form>
     <br>
