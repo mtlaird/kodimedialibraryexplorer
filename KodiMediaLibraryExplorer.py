@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 import TMDBApi
 import logging
 from KodiMysqlClient import KodiMysqlClient
-from KodiTaglist import Taglist
+from KodiTaglist import Taglist, TaglistDirectory
 
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
@@ -140,3 +140,11 @@ def taglist_by_name(list_name):
     return render_template("tag_list_detail.html", taglist=taglist.metadata, taglist_movies=taglist.movies,
                            db_tag=db_tag, db_movies_dict=db_movies_dict, db_tag_movies_dict=db_tag_movies_dict,
                            tags_added=tags_added)
+
+
+@app.route("/taglists")
+def taglists():
+
+    taglist_dir = TaglistDirectory()
+
+    return render_template("tag_lists.html", taglists=taglist_dir.taglists)

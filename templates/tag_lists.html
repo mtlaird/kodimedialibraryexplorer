@@ -1,5 +1,10 @@
 {%  extends 'base.html' %}
 
 {% block content %}
+    <ul>
+    {% for name in taglists %}
+        <li><a href="taglists/{{ taglists[name].name }}">{{ name }}</a></li>
+    {% endfor %}
+    </ul>
 
 {% endblock %}
