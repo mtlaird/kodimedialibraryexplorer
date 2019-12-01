@@ -147,7 +147,7 @@ function RegisterTableHeader(TableID) {
             if (TableHeaderCell.innerText === "Title") {
                 TableHeaderCell.setAttribute("onclick", "SortTable(\"" + TableID + "\", \"HTML\", " + i +")");
             }
-            else if (TableHeaderCell.innerText === "Avg" || TableHeaderCell.innerText === "Pop") {
+            else if (TableHeaderCell.innerText === "Avg" || TableHeaderCell.innerText === "Pop" || TableHeaderCell.innerText === "Year") {
                 TableHeaderCell.setAttribute("onclick", "SortTable(\"" + TableID + "\", \"Numeric\", " + i +")");
             }
             else {

@@ -21,7 +21,7 @@
     {% endif %}
     </form>
     <br>
-    <table class="movies">
+    <table class="movies" id="movies_table">
         <tr><th>Year</th><th>Title</th><th>In DB</th><th>Has Tag</th></tr>
     {% for movie in taglist_movies %}
         <tr><td>{{ movie['year'] }}</td>
@@ -42,4 +42,10 @@
     {% endfor %}
     </table>
 
+{% endblock %}
+
+{% block footer_content %}
+<script type="application/javascript">
+    RegisterTableHeader("movies_table");
+</script>
 {% endblock %}
