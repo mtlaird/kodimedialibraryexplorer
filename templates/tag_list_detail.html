@@ -25,8 +25,8 @@
         <tr><th>Year</th><th>Title</th><th>In DB</th><th>Has Tag</th></tr>
     {% for movie in taglist_movies %}
         <tr><td>{{ movie['year'] }}</td>
+            <td>{{ movie['title'] }}</td>
             {% if movie['title'] in db_movies_dict %}
-                <td><a href="/movies/id/{{ db_movies_dict[movie['title']] }}">{{ movie['title'] }}</a></td>
                 <td>Yes</td>
                 {% if movie['title'] in db_tag_movies_dict %}
                     <td>Yes</td>
@@ -34,7 +34,6 @@
                     <td>&nbsp</td>
                 {% endif %}
             {% else %}
-                <td>{{ movie['title'] }}</td>
                 <td>&nbsp</td>
                 <td>&nbsp</td>
             {% endif %}

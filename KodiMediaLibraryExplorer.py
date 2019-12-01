@@ -114,7 +114,7 @@ def tags():
 @app.route("/tags/<tag_id>")
 def movies_by_tag(tag_id):
     client = KodiMysqlClient()
-    db_movies = client.get_movie_titles_by_tag(tag_id)
+    db_movies = client.get_movie_title_and_release_by_tag(tag_id)
 
     return render_template("tag_detail.html", movies=db_movies)
 
@@ -128,13 +128,15 @@ def taglist_by_name(list_name):
     if request.method == "POST" and 'create_tag' in request.form and request.form['create_tag'] == 'true':
         client.create_tag(taglist.metadata['name'])
 
-    db_tag_movies_dict, db_tag = client.get_movies_dict_by_tag_name(taglist.metadata['name'])
+    db_tag = client.get_tag_by_name(taglist.metadata['name'])
+    db_tag_movies = client.get_movie_title_and_release_by_tag(db_tag['tag_id'])
+    db_tag_movies_dict = client.convert_db_movie_list_to_dict(db_tag_movies)
     db_movies = client.get_movies_from_title_list(taglist.movies_tuple())
     db_movies_dict = client.convert_db_movie_list_to_dict(db_movies)
 
     if request.method == "POST" and 'add_tags' in request.form and request.form['add_tags'] == 'true':
-        db_movies_no_tag_dict = client.get_dict_difference(db_movies_dict, db_tag_movies_dict)
-        tags_added = client.add_tag_to_movie_dict(db_tag, db_movies_no_tag_dict)
+        db_movies_no_tag = client.get_movie_list_difference(db_movies, db_tag_movies)
+        tags_added = client.add_tag_to_movies_check_year(db_tag, db_movies_no_tag, taglist.movies)
         db_tag_movies_dict, db_tag = client.get_movies_dict_by_tag_name(taglist.metadata['name'])
 
     return render_template("tag_list_detail.html", taglist=taglist.metadata, taglist_movies=taglist.movies,

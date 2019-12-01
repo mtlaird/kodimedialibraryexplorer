@@ -50,6 +50,14 @@ class KodiMysqlClient:
                 ret_dict[key] = list1[key]
         return ret_dict
 
+    @staticmethod
+    def get_movie_list_difference(list1, list2):
+        ret_list = []
+        for item in list1:
+            if item not in list2:
+                ret_list.append(item)
+        return ret_list
+
     def get_all_movie_titles(self):
 
         cursor = self.cnx.cursor()
@@ -83,6 +91,17 @@ class KodiMysqlClient:
                 "production company": c18, "country": c21, "premiered": premiered
             }
 
+    def get_movie_by_title_and_year(self, title, year):
+
+        cursor = self.cnx.cursor()
+        query = "select idMovie, c00, premiered from movie where c00 = %s and premiered like %s"
+        cursor.execute(query, (title, '%' + year + '%'))
+
+        for (idMovie, c00, premiered) in cursor:
+            return {"id": idMovie, "title": c00, "premiered": premiered}
+
+        return {}
+
     def get_movie_tags(self, movie_id):
 
         cursor = self.cnx.cursor()
@@ -96,15 +115,16 @@ class KodiMysqlClient:
 
         return ret
 
-    def get_movie_titles_by_tag(self, tag_id):
+    def get_movie_title_and_release_by_tag(self, tag_id):
 
         cursor = self.cnx.cursor()
-        query = "select idMovie, c00 from tag_link tl inner join movie on tl.media_id = movie.idMovie where tag_id = %s"
+        query = "select idMovie, c00, premiered from tag_link tl inner join movie on tl.media_id = movie.idMovie " \
+                "where tag_id = %s"
         cursor.execute(query, (tag_id,))
 
         ret = []
-        for (idMovie, c00) in cursor:
-            ret.append({"id": idMovie, "title": c00})
+        for (idMovie, c00, premiered) in cursor:
+            ret.append({"id": idMovie, "title": c00, "premiered": premiered})
 
         return ret
 
@@ -112,7 +132,7 @@ class KodiMysqlClient:
         tag = self.get_tag_by_name(tag_name)
 
         if tag:
-            tag_movies = self.get_movie_titles_by_tag(tag['tag_id'])
+            tag_movies = self.get_movie_title_and_release_by_tag(tag['tag_id'])
             return self.convert_db_movie_list_to_dict(tag_movies), tag
         else:
             return {}, tag
@@ -395,5 +415,17 @@ class KodiMysqlClient:
             tags_added += 1
 
         self.cnx.commit()
+
+        return tags_added
+
+    def add_tag_to_movies_check_year(self, tag, db_movies, source_movies):
+        pass_ok = []
+        for movie in db_movies:
+            for s_movie in source_movies:
+                if movie['title'] == s_movie['title']:
+                    if s_movie['year'] in movie['premiered']:
+                        pass_ok.append(movie)
+
+        tags_added = self.add_tag_to_movie_dict(tag, self.convert_db_movie_list_to_dict(pass_ok))
 
         return tags_added
