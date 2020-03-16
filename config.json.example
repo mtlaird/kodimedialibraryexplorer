@@ -2,5 +2,5 @@
   "webserver-host": "127.0.0.1",
   "mysqlserver-host": "127.0.01",
   "tmdb-api-key": "xxxx",
-  "taglist_root": ""
+  "taglist-root": ""
 }
