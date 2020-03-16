@@ -129,8 +129,12 @@ def taglist_by_name(list_name):
         client.create_tag(taglist.metadata['name'])
 
     db_tag = client.get_tag_by_name(taglist.metadata['name'])
-    db_tag_movies = client.get_movie_title_and_release_by_tag(db_tag['tag_id'])
-    db_tag_movies_dict = client.convert_db_movie_list_to_dict(db_tag_movies)
+    if db_tag:
+        db_tag_movies = client.get_movie_title_and_release_by_tag(db_tag['tag_id'])
+        db_tag_movies_dict = client.convert_db_movie_list_to_dict(db_tag_movies)
+    else:
+        db_tag_movies = []
+        db_tag_movies_dict = {}
     db_movies = client.get_movies_from_title_list(taglist.movies_tuple())
     db_movies_dict = client.convert_db_movie_list_to_dict(db_movies)
 
