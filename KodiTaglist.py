@@ -6,7 +6,10 @@ from flask import current_app
 
 class Taglist:
     def __init__(self, list_name):
-        taglist_root = current_app.config["root-path"]
+        if "root-path" in current_app.config:
+            taglist_root = current_app.config["root-path"]
+        else:
+            taglist_root = ''
         if taglist_root != '' and taglist_root[-1] != '/':
             taglist_root += '/'
         if list_name.endswith(".json"):
@@ -31,7 +34,10 @@ class Taglist:
 
 class TaglistDirectory:
     def __init__(self):
-        taglist_root = current_app.config["root-path"]
+        if "root-path" in current_app.config:
+            taglist_root = current_app.config["root-path"]
+        else:
+            taglist_root = ''
         if taglist_root != '' and taglist_root[-1] != '/':
             taglist_root += '/'
         self.taglists = {}
