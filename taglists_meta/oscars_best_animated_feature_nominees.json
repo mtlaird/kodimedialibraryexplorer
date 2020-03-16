@@ -1,0 +1,5 @@
+{
+  "source": "oscars_best_animated_feature_nominees.csv",
+  "name": "Oscars Best Animated Feature Nominees",
+  "description": "The films that were nominated for the Best Animated Feature award at the Oscars."
+}

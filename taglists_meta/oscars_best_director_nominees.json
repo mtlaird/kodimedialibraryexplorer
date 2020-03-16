@@ -1,0 +1,5 @@
+{
+  "source": "oscars_best_director_nominees.csv",
+  "name": "Oscars Best Director Nominees",
+  "description": "The films that were nominated for the Best Director award at the Oscars."
+}
