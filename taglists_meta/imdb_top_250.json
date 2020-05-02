@@ -1,0 +1,5 @@
+{
+  "source": "imdb_top_250_17032020.csv",
+  "name": "IMDB Top 250",
+  "description": "The Top 250 films ranked, according to IMDB, as of March 17, 2020."
+}
