@@ -287,25 +287,32 @@ class KodiMysqlClient:
                 "genre": check_for_split(c08), "rated": c13, "studio": c14
             }
 
-    def get_episode_titles_by_tvshow(self, show_name=None, show_id=None):
+    def get_season_id(self, show_id, season):
 
         cursor = self.cnx.cursor()
 
-        query = "select s.name, e.c00 from seasons s " \
+        query = "select idSeason from seasons " \
+                "where idShow = %s and season = %s"
+
+        cursor.execute(query, (show_id, season))
+
+        for (idSeason,) in cursor:
+            return idSeason
+
+    def get_episode_titles_by_tvshow_and_season(self, season_id, show_id):
+
+        cursor = self.cnx.cursor()
+
+        query = "select e.c13 as number, e.c05 as airdate, e.c00 as title from seasons s " \
                 "inner join tvshow t on s.idShow = t.idShow " \
-                "inner join episode e on s.idSeason = e.idSeason "
-        if show_name:
-            query += "where t.c00 = %s"
-            cursor.execute(query, (show_name,))
-        elif show_id:
-            query += "where t.idShow = %s"
-            cursor.execute(query, (show_id,))
-        else:
-            return []
+                "inner join episode e on s.idSeason = e.idSeason " \
+                "where s.idSeason = %s " \
+                "and t.idShow = %s"
+        cursor.execute(query, (season_id, show_id))
 
         ret = []
-        for (name, c00) in cursor:
-            ret.append({"season": name, "title": c00})
+        for (number, airdate, title) in cursor:
+            ret.append({"number": number, "airdate": airdate, "title": title})
 
         return ret
 

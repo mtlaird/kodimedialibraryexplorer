@@ -49,6 +49,17 @@ def tvshow_detail(tvshow_id):
     return render_template("tvshow_detail.html", tvshow=db_show, episodes=db_episodes)
 
 
+@app.route("/tvshows/id/<tvshow_id>/seasons/<season>")
+def tvshow_season_episodes(tvshow_id, season):
+    client = KodiMysqlClient()
+    db_show = client.get_tvshow_info(show_id=tvshow_id)
+    db_season_id = client.get_season_id(tvshow_id, season)
+
+    db_episodes = client.get_episode_titles_by_tvshow_and_season(season_id=db_season_id, show_id=db_show['id'])
+
+    return render_template("tvshow_season_episodes.html", tvshow=db_show, episodes=db_episodes, season=season)
+
+
 @app.route("/actors")
 def actors():
     client = KodiMysqlClient()

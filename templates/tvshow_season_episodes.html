@@ -15,12 +15,15 @@
             <a href="/tvshows/genre/{{ gen }}">{{ gen }}</a>
         {% endfor %}
     {% endif %} <br><br>
-    Episodes:<br>
-    {% for se in episodes %}
-        {% if se['season'] == 0 %}
-            <a href="/tvshows/id/{{ tvshow['id'] }}/seasons/{{ se['season'] }}">Specials: {{ se['episode_count'] }} episodes</a> <br>
-        {% else %}
-            <a href="/tvshows/id/{{ tvshow['id'] }}/seasons/{{ se['season'] }}">Season {{ se['season'] }}: {{ se['episode_count'] }} episodes</a> <br>
-        {% endif %}
+    {% if season == 0 %}
+        Specials: <br>
+    {% else %}
+        Season {{ season }}: <br>
+    {% endif %}
+    <table>
+    <tr><th>No.</th><th>Airdate</th><th>Title</th></tr>
+    {% for e in episodes %}
+        <tr><td>{{ e['number'] }}</td><td>{{ e['airdate'] }}</td><td>{{ e['title'] }}</td></tr>
     {% endfor %}
+    </table>
 {% endblock %}
