@@ -303,11 +303,12 @@ class KodiMysqlClient:
 
         cursor = self.cnx.cursor()
 
-        query = "select e.c13 as number, e.c05 as airdate, e.c00 as title from seasons s " \
+        query = "select CAST(e.c13 as UNSIGNED) as number, e.c05 as airdate, e.c00 as title from seasons s " \
                 "inner join tvshow t on s.idShow = t.idShow " \
                 "inner join episode e on s.idSeason = e.idSeason " \
                 "where s.idSeason = %s " \
-                "and t.idShow = %s"
+                "and t.idShow = %s " \
+                "order by number"
         cursor.execute(query, (season_id, show_id))
 
         ret = []
