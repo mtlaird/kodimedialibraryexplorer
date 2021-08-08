@@ -23,6 +23,21 @@ function ClearSearchField(FieldID) {
     }
 }
 
+function GetSearchFieldValueAndSearch(FieldID) {
+    let SearchField = document.getElementById(FieldID);
+    if (SearchField != null) {
+        let SearchFieldValue = SearchField.value;
+        SearchListItems(SearchFieldValue);
+    }
+}
+
+function RegisterSearchButton(ButtonID, FieldID) {
+    let SearchButton = document.getElementById(ButtonID);
+    if (SearchButton != null) {
+        SearchButton.setAttribute("onclick", "GetSearchFieldValueAndSearch(\"" + FieldID + "\")");
+    }
+}
+
 function RegisterClearButton(ButtonID, FieldID) {
     let ClearButton = document.getElementById(ButtonID);
     if (ClearButton != null) {
