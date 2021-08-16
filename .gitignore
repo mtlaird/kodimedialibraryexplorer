@@ -3,3 +3,4 @@ __pycache__/
 kodimedialibraryexplorer.log
 .idea/
 config.json
+/taglists_data/*_backup.csv
