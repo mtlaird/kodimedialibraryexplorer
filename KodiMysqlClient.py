@@ -74,7 +74,7 @@ class KodiMysqlClient:
     def get_movie_info(self, movie_title=None, movie_id=None):
 
         cursor = self.cnx.cursor()
-        query = "select idMovie, c00, c06, c14, c15, c18, c21, premiered from movie "
+        query = "select idMovie, c00, c06, c14, c15, c18, c21, premiered, idSet from movie "
         if movie_title:
             query += "where c00 = %s"
             cursor.execute(query, (movie_title,))
@@ -84,11 +84,12 @@ class KodiMysqlClient:
         else:
             return {}
 
-        for (idMovie, c00, c06, c14, c15, c18, c21, premiered) in cursor:
+        for (idMovie, c00, c06, c14, c15, c18, c21, premiered, idSet) in cursor:
             return {
                 "id": idMovie, "title": c00, "writer": check_for_split(c06),
                 "genre": check_for_split(c14), "director": check_for_split(c15),
-                "production company": c18, "country": c21, "premiered": premiered
+                "production company": c18, "country": c21, "premiered": premiered,
+                "set_id": idSet
             }
 
     def get_movie_by_title_and_year(self, title, year):
@@ -437,3 +438,40 @@ class KodiMysqlClient:
         tags_added = self.add_tag_to_movie_dict(tag, self.convert_db_movie_list_to_dict(pass_ok))
 
         return tags_added
+
+    def get_all_sets(self):
+
+        cursor = self.cnx.cursor()
+
+        query = "select idSet, strSet from sets order by strSet"
+        cursor.execute(query)
+        ret = []
+        for (idSet, strSet) in cursor:
+            ret.append({"set_id": idSet, "set_name": strSet})
+
+        return ret
+
+    def get_set_details_by_id(self, set_id):
+
+        cursor = self.cnx.cursor()
+
+        query = "select idSet, strSet, strOverview from sets where idSet = %s"
+        cursor.execute(query, (set_id,))
+
+        for (idSet, strSet, strOverview) in cursor:
+            return {"set_id": idSet, "set_name": strSet, "set_overview": strOverview}
+
+        return {}
+
+    def get_movies_by_set(self, set_id):
+
+        cursor = self.cnx.cursor()
+
+        query = "select idMovie, c00 from movie where idSet = %s"
+        cursor.execute(query, (set_id,))
+
+        ret = []
+        for (idMovie, c00) in cursor:
+            ret.append({"id": idMovie, "title": c00})
+
+        return ret

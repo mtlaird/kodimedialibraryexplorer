@@ -55,3 +55,53 @@ class Person:
     def get_tv_shows_as_actor(self):
 
         return self.tv_shows['cast']
+
+
+class Collection:
+
+    def __init__(self, tmdb_id=None, name=None):
+        tmdb.API_KEY = current_app.config["tmdb-api-key"]
+        self.tmdb_id = None
+        if tmdb_id:
+            self.tmdb_id = tmdb_id
+        else:
+            temp = tmdb.Search().collection(query=name)
+            result = temp['results'][0]
+            self.tmdb_id = result['id']
+        if not self.tmdb_id:
+            print("TMDB search failed. Search type: 'collection' Search string: '{}'".format(name))
+            raise TMDBSearchException
+
+        coll = tmdb.Collections(self.tmdb_id)
+
+        self.info = coll.info()
+        self.name = self.info['name']
+        self.overview = self.info['overview']
+        self.parts = self.info['parts']
+
+    def get_movies_in_collection(self):
+        ret_list = []
+        for p in self.parts:
+            ret_list.append({'title': p['title'],
+                             'release_date': p['release_date'],
+                             'popularity': p['popularity'],
+                             'vote_average': p['vote_average'],
+                             'overview': p['overview']})
+
+        return ret_list
+
+
+class TVShow:
+
+    def __init__(self, tmdb_id=None, name=None):
+        tmdb.API_KEY = current_app.config["tmdb-api-key"]
+        self.tmdb_id = None
+        if tmdb_id:
+            self.tmbd_id = tmdb_id
+        else:
+            temp = tmdb.Search().tv(query=name)
+            result = temp['results'][0]
+            self.tmdb_id = result['id']
+        if not self.tmbd_id:
+            print("TMDB search failed. Search type: 'tv' Search string: '{}'".format(name))
+            raise TMDBSearchException

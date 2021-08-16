@@ -21,6 +21,9 @@
         <br>
     {% endif %}
     Premiered: {{ movie['premiered'] }} <br>
+    {% if set != None %}
+        Set: <a href="/sets/{{ set['set_id'] }}">{{ set['set_name'] }}</a> <br>
+    {% endif %}
     Production Company: {{ movie['production company'] }} <br>
     {% if movie['genre'] is string %}
         Genre: <a href="/movies/genre/{{ movie['genre'] }}">{{ movie['genre'] }}</a> <br>

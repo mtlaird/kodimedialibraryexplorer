@@ -29,7 +29,12 @@ def movie_detail(movie_id):
     db_actors = client.get_actors_by_movie(movie_id=movie_id)
     db_tags = client.get_movie_tags(movie_id=movie_id)
 
-    return render_template("movie_detail.html", movie=db_movie, actors=db_actors, tags=db_tags)
+    if db_movie['set_id'] is not None:
+        db_set = client.get_set_details_by_id(db_movie['set_id'])
+    else:
+        db_set = None
+
+    return render_template("movie_detail.html", movie=db_movie, actors=db_actors, tags=db_tags, set=db_set)
 
 
 @app.route("/tvshows")
@@ -165,3 +170,21 @@ def taglists():
     taglist_dir = TaglistDirectory()
 
     return render_template("tag_lists.html", taglists=taglist_dir.taglists)
+
+
+@app.route("/sets")
+def sets():
+    client = KodiMysqlClient()
+    db_sets = client.get_all_sets()
+
+    return render_template("sets.html", sets=db_sets)
+
+
+@app.route("/sets/<set_id>")
+def set_details(set_id):
+    client = KodiMysqlClient()
+
+    db_set_details = client.get_set_details_by_id(set_id)
+    db_set_movies = client.get_movies_by_set(set_id)
+
+    return render_template("set_details.html", set_details=db_set_details, set_movies=db_set_movies)

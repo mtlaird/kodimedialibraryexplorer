@@ -1,0 +1,9 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for set in sets %}
+        <li><a href="/sets/{{ set['set_id'] }}">{{ set['set_name'] }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}
