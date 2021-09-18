@@ -187,4 +187,10 @@ def set_details(set_id):
     db_set_details = client.get_set_details_by_id(set_id)
     db_set_movies = client.get_movies_by_set(set_id)
 
-    return render_template("set_details.html", set_details=db_set_details, set_movies=db_set_movies)
+    try:
+        tmdb_collection = TMDBApi.Collection(name=db_set_details['set_name'])
+    except TMDBApi.TMDBSearchException:
+        return render_template("set_details.html", set_details=db_set_details, set_movies=db_set_movies)
+
+    return render_template("set_details.html", set_details=db_set_details, set_movies=db_set_movies,
+                           tmdb_movies=tmdb_collection.get_movies_in_collection())

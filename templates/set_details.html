@@ -3,10 +3,18 @@
 {% block content %}
     Name: {{ set_details['set_name'] }}<br>
     Overview: {{ set_details['set_overview'] }}<br>
-    Movies:<br>
+    Movies in DB:<br>
     <ul>
     {% for movie in set_movies %}
         <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>
     {% endfor %}
     </ul>
+    {% if tmdb_movies|length > 0 %}
+        All movies in Set:<br>
+        <ul>
+        {% for tmdb_movie in tmdb_movies %}
+            <li>{{ tmdb_movie['title'] }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

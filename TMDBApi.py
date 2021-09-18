@@ -66,6 +66,9 @@ class Collection:
             self.tmdb_id = tmdb_id
         else:
             temp = tmdb.Search().collection(query=name)
+            if len(temp['results']) == 0:
+                print("TMDB search failed. Search type: 'collection' Search string: '{}'".format(name))
+                raise TMDBSearchException
             result = temp['results'][0]
             self.tmdb_id = result['id']
         if not self.tmdb_id:
@@ -82,11 +85,11 @@ class Collection:
     def get_movies_in_collection(self):
         ret_list = []
         for p in self.parts:
-            ret_list.append({'title': p['title'],
-                             'release_date': p['release_date'],
-                             'popularity': p['popularity'],
-                             'vote_average': p['vote_average'],
-                             'overview': p['overview']})
+            details = {'title': p['title'], 'popularity': p['popularity'],
+                       'vote_average': p['vote_average'], 'overview': p['overview']}
+            if 'release_date' in p:
+                details['release_date'] = p['release_date']
+            ret_list.append(details)
 
         return ret_list
 
