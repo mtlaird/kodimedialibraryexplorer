@@ -23,4 +23,14 @@
             <a href="/tvshows/id/{{ tvshow['id'] }}/seasons/{{ se['season'] }}">Season {{ se['season'] }}: {{ se['episode_count'] }} episodes</a> <br>
         {% endif %}
     {% endfor %}
+    Total episode count: {{ total_episode_count }} ({{ total_specials_count }} specials)<br><br>
+    {% if tmdb_show_info is mapping %}
+        Show information from TMDB:<br>
+        Overview: {{ tmdb_show_info['overview'] }}<br>
+        Number of Seasons: {{ tmdb_show_info['num_seasons'] }}<br>
+        Number of Episodes: {{ tmdb_show_info['num_episodes'] }}<br>
+        First Airdate: {{ tmdb_show_info['first_air'] }}<br>
+        Last Airdate: {{ tmdb_show_info['last_air'] }}<br>
+        Status: {{ tmdb_show_info['status'] }}<br>
+    {% endif %}
 {% endblock %}

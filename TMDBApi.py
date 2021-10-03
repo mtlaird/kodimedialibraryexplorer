@@ -100,11 +100,44 @@ class TVShow:
         tmdb.API_KEY = current_app.config["tmdb-api-key"]
         self.tmdb_id = None
         if tmdb_id:
-            self.tmbd_id = tmdb_id
+            self.tmdb_id = tmdb_id
         else:
             temp = tmdb.Search().tv(query=name)
-            result = temp['results'][0]
-            self.tmdb_id = result['id']
-        if not self.tmbd_id:
+            if len(temp['results']) > 0:
+                result = temp['results'][0]
+                self.tmdb_id = result['id']
+        if not self.tmdb_id:
             print("TMDB search failed. Search type: 'tv' Search string: '{}'".format(name))
             raise TMDBSearchException
+        self.tv = tmdb.TV(self.tmdb_id)
+
+        self.info = self.tv.info()
+
+    def get_creator(self):
+        return self.tv.created_by
+
+    def get_first_air_date(self):
+        return self.tv.first_air_date
+
+    def get_last_air_date(self):
+        return self.tv.last_air_date
+
+    def get_number_of_episodes(self):
+        return self.tv.number_of_episodes
+
+    def get_number_of_seasons(self):
+        return self.tv.number_of_seasons
+
+    def get_overview(self):
+        return self.tv.overview
+
+    def get_seasons(self):
+        return self.tv.seasons
+
+    def get_status(self):
+        return self.tv.status
+
+    def get_show_info(self):
+        return {"num_seasons": self.get_number_of_seasons(), "num_episodes": self.get_number_of_episodes(),
+                "overview": self.get_overview(), "status": self.get_status(), "first_air": self.get_first_air_date(),
+                "last_air": self.get_last_air_date()}

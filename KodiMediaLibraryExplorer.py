@@ -50,8 +50,23 @@ def tvshow_detail(tvshow_id):
     client = KodiMysqlClient()
     db_show = client.get_tvshow_info(show_id=tvshow_id)
     db_episodes = client.get_episode_count_per_season_by_tvshow(show_id=tvshow_id)
+    total_episode_count = 0
+    total_specials_count = 0
+    for d in db_episodes:
+        if d['season'] in (0, '0'):
+            total_specials_count = d['episode_count']
+        else:
+            total_episode_count += d['episode_count']
 
-    return render_template("tvshow_detail.html", tvshow=db_show, episodes=db_episodes)
+    try:
+        tmdb_tvshow = TMDBApi.TVShow(name=db_show['title'])
+    except TMDBApi.TMDBSearchException:
+        return render_template("tvshow_detail.html", tvshow=db_show, episodes=db_episodes,
+                               total_episode_count=total_episode_count, total_specials_count=total_specials_count)
+
+    return render_template("tvshow_detail.html", tvshow=db_show, episodes=db_episodes,
+                           tmdb_show_info=tmdb_tvshow.get_show_info(), total_episode_count=total_episode_count,
+                           total_specials_count=total_specials_count)
 
 
 @app.route("/tvshows/id/<tvshow_id>/seasons/<season>")
