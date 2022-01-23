@@ -22,6 +22,21 @@ def movies():
     return render_template("movies.html", movies=db_movies)
 
 
+@app.route("/movies/search", methods=["GET", "POST"])
+def movie_search():
+    client = KodiMysqlClient()
+
+    if request.method == "POST":
+        search_term = request.form['search_term']
+        db_movies = client.get_movie_titles_by_search(search_term)
+
+    else:
+        search_term = ""
+        db_movies = []
+
+    return render_template("movie_search.html", movies=db_movies, search_term=search_term)
+
+
 @app.route("/movies/id/<movie_id>")
 def movie_detail(movie_id):
     client = KodiMysqlClient()

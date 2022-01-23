@@ -6,6 +6,7 @@
         <input type="submit" id="Search" value="Search">
         <input type="submit" id="ClearSearchField" value="Clear">
     </p>
+    <p><a href="/movies/search">Search for specific movie.</a></p>
     <ul>
     {% for movie in movies %}
         <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>

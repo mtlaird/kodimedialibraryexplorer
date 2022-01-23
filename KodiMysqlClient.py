@@ -71,6 +71,19 @@ class KodiMysqlClient:
 
         return ret
 
+    def get_movie_titles_by_search(self, search):
+
+        cursor = self.cnx.cursor()
+
+        query = "select idMovie, c00 from movie where c00 like %s order by c00"
+        cursor.execute(query, ('%' + search + '%',))
+
+        ret = []
+        for (idMovie, c00) in cursor:
+            ret.append({"id": idMovie, "title": c00})
+
+        return ret
+
     def get_movie_info(self, movie_title=None, movie_id=None):
 
         cursor = self.cnx.cursor()

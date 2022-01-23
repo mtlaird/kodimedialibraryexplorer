@@ -1,0 +1,19 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    <p>
+    <form method="post">
+        <label for="SearchField">Filter:</label><input type="text" name="search_term" value="{{ search_term }}" autocomplete="off">
+        <input type="submit" value="Search">
+    </form>
+    </p>
+    {% if movies|length > 0 %}
+        <ul>
+        {% for movie in movies %}
+            <li><a href="/movies/id/{{ movie['id'] }}">{{ movie['title'] }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results.</p>
+    {% endif %}
+{% endblock %}
