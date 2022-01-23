@@ -1,0 +1,24 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+    Title: {{ movie['title'] }} <br>
+    Current poster url: <a href="{{  poster['url']}}">{{ poster['url'] }}</a>
+    {% if status == 404 %}
+        <br><b>NOTE: Current poster file is not found on the server!</b>
+    {% endif %}
+    <br><br>TMDB Posters: <table><tr><th>URL</th><th>Lang</th><th>VAvg</th><th>VCt</th></tr>
+    {% for tmdb_poster in posters %}
+        <tr>
+            <td><a href="{{ base_poster_url }}{{ tmdb_poster['file_path'] }}">{{ tmdb_poster['file_path'] }}</a></td>
+            <td>{{ tmdb_poster['iso_639_1'] }}</td>
+            <td>{{ tmdb_poster['vote_average'] }}</td>
+            <td>{{ tmdb_poster['vote_count'] }}</td>
+            <td><form method="post">
+                <input type="submit" value="Set">
+                <input type="hidden" name="art_id" value="{{ poster['art_id'] }}">
+                <input type="hidden" name="new_url" value="{{ base_poster_url }}{{ tmdb_poster['file_path'] }}">
+            </form></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

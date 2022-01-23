@@ -1,5 +1,6 @@
 import tmdbsimple as tmdb
 from flask import current_app
+from requests import head
 
 
 def get_titles_from_movie_list(movie_list):
@@ -8,6 +9,11 @@ def get_titles_from_movie_list(movie_list):
         if movie['title'] not in ret_list:
             ret_list.append(movie['title'])
     return ret_list
+
+
+def check_url_status_code(url):
+    response = head(url)
+    return response.status_code
 
 
 class TMDBSearchException(Exception):
@@ -141,3 +147,28 @@ class TVShow:
         return {"num_seasons": self.get_number_of_seasons(), "num_episodes": self.get_number_of_episodes(),
                 "overview": self.get_overview(), "status": self.get_status(), "first_air": self.get_first_air_date(),
                 "last_air": self.get_last_air_date()}
+
+
+class Movie:
+
+    def __init__(self, tmdb_id=None, name=None):
+        tmdb.API_KEY = current_app.config["tmdb-api-key"]
+        self.tmdb_id = None
+        if tmdb_id:
+            self.tmdb_id = tmdb_id
+        else:
+            temp = tmdb.Search().movie(query=name)
+            if len(temp['results']) > 0:
+                result = temp['results'][0]
+                self.tmdb_id = result['id']
+        if not self.tmdb_id:
+            print("TMDB search failed. Search type: 'movie' Search string: '{}'".format(name))
+            raise TMDBSearchException
+        self.movie = tmdb.Movies(self.tmdb_id)
+
+        self.info = self.movie.info()
+        self.images = self.movie.images()
+
+    def get_posters(self):
+
+        return self.images['posters']

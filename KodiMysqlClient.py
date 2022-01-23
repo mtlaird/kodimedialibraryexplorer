@@ -475,3 +475,43 @@ class KodiMysqlClient:
             ret.append({"id": idMovie, "title": c00})
 
         return ret
+
+    def get_all_movie_poster_art_urls(self):
+
+        cursor = self.cnx.cursor()
+
+        query = "select art_id, media_id, c00 as movie_title, media_type, art_type, url from art " \
+                "inner join movie on art.media_id = movie.idMovie " \
+                "where media_type = 'movie' and type = 'poster'"
+        cursor.execute(query)
+
+        ret = []
+        for (art_id, media_id, movie_title, media_type, art_type, url) in cursor:
+            ret.append({"art_id": art_id, "media_id": media_type, "type": art_type, "url": url,
+                        "movie_title": movie_title})
+
+        return ret
+
+    def get_movie_poster_art_by_id(self, movie_id):
+
+        cursor = self.cnx.cursor()
+
+        query = "select art_id, url from art " \
+                "where media_type = 'movie' and type = 'poster' and media_id = %s "
+
+        cursor.execute(query, (movie_id,))
+
+        for (art_id, url) in cursor:
+            return {"art_id": art_id, "url": url}
+
+        return {}
+
+    def update_movie_poster_art_url(self, art_id, new_url, commit=True):
+
+        cursor = self.cnx.cursor()
+        query = "update art set url = %s where art_id = %s"
+
+        cursor.execute(query, (new_url, art_id))
+
+        if commit:
+            self.cnx.commit()

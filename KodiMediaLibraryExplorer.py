@@ -37,6 +37,26 @@ def movie_detail(movie_id):
     return render_template("movie_detail.html", movie=db_movie, actors=db_actors, tags=db_tags, set=db_set)
 
 
+@app.route("/movies/id/<movie_id>/posters", methods=["GET", "POST"])
+def movie_posters(movie_id):
+    base_poster_url = 'https://image.tmdb.org/t/p/original/'
+    client = KodiMysqlClient()
+
+    if request.method == "POST":
+        art_id = request.form['art_id']
+        new_url = request.form['new_url']
+        client.update_movie_poster_art_url(art_id, new_url)
+
+    db_movie = client.get_movie_info(movie_id=movie_id)
+    db_movie_poster = client.get_movie_poster_art_by_id(movie_id=movie_id)
+    tmdb_movie = TMDBApi.Movie(name=db_movie['title'])
+
+    poster_file_status = TMDBApi.check_url_status_code(db_movie_poster['url'])
+
+    return render_template("movie_posters.html", movie=db_movie, poster=db_movie_poster, status=poster_file_status,
+                           posters=tmdb_movie.get_posters(), base_poster_url=base_poster_url)
+
+
 @app.route("/tvshows")
 def tvshows():
     client = KodiMysqlClient()
