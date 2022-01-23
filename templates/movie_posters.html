@@ -6,7 +6,8 @@
     {% if status == 404 %}
         <br><b>NOTE: Current poster file is not found on the server!</b>
     {% endif %}
-    <br><br>TMDB Posters: <table><tr><th>URL</th><th>Lang</th><th>VAvg</th><th>VCt</th></tr>
+    <br><br><form method="post">Posters for wrong movie? Override TMDB ID: <input type="text" name="tmdb_id"><input type="submit"></form>
+    <br>TMDB Posters: <table><tr><th>URL</th><th>Lang</th><th>VAvg</th><th>VCt</th></tr>
     {% for tmdb_poster in posters %}
         <tr>
             <td><a href="{{ base_poster_url }}{{ tmdb_poster['file_path'] }}">{{ tmdb_poster['file_path'] }}</a></td>

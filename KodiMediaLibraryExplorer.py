@@ -55,16 +55,24 @@ def movie_detail(movie_id):
 @app.route("/movies/id/<movie_id>/posters", methods=["GET", "POST"])
 def movie_posters(movie_id):
     base_poster_url = 'https://image.tmdb.org/t/p/original/'
+    tmdb_id = None
     client = KodiMysqlClient()
 
     if request.method == "POST":
-        art_id = request.form['art_id']
-        new_url = request.form['new_url']
-        client.update_movie_poster_art_url(art_id, new_url)
+        if 'art_id' in request.form.keys() and 'new_url' in request.form.keys():
+            art_id = request.form['art_id']
+            new_url = request.form['new_url']
+            client.update_movie_poster_art_url(art_id, new_url)
+        if 'tmdb_id' in request.form.keys():
+            tmdb_id = request.form['tmdb_id']
 
     db_movie = client.get_movie_info(movie_id=movie_id)
     db_movie_poster = client.get_movie_poster_art_by_id(movie_id=movie_id)
-    tmdb_movie = TMDBApi.Movie(name=db_movie['title'])
+
+    if tmdb_id:
+        tmdb_movie = TMDBApi.Movie(tmdb_id=tmdb_id)
+    else:
+        tmdb_movie = TMDBApi.Movie(name=db_movie['title'])
 
     poster_file_status = TMDBApi.check_url_status_code(db_movie_poster['url'])
 
