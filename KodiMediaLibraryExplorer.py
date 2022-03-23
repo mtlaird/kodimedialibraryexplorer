@@ -1,4 +1,8 @@
-from flask import Flask, render_template, request
+from csv import writer as csvwriter
+from io import StringIO
+from datetime import datetime
+
+from flask import Flask, render_template, request, Response
 
 import TMDBApi
 import logging
@@ -252,3 +256,31 @@ def set_details(set_id):
 
     return render_template("set_details.html", set_details=db_set_details, set_movies=db_set_movies,
                            tmdb_movies=tmdb_collection.get_movies_in_collection())
+
+
+@app.route('/csv/movies')
+def download_csv_movies():
+    client = KodiMysqlClient()
+    datestring = datetime.today().strftime('%Y%m%d')
+
+    db_movies = client.get_movies_for_csv()
+    out = StringIO()
+    writer = csvwriter(out)
+    writer.writerows(db_movies)
+    csv_data = out.getvalue()
+    return Response(csv_data, mimetype="text/csv",
+                    headers={"Content-disposition": f"attachment; filename=kodi_db_movies_{datestring}.csv"})
+
+
+@app.route('/csv/tvshows')
+def download_csv_tvshows():
+    client = KodiMysqlClient()
+    datestring = datetime.today().strftime('%Y%m%d')
+
+    db_tvshows = client.get_tvshows_for_csv()
+    out = StringIO()
+    writer = csvwriter(out)
+    writer.writerows(db_tvshows)
+    csv_data = out.getvalue()
+    return Response(csv_data, mimetype="text/csv",
+                    headers={"Content-disposition": f"attachment; filename=kodi_db_tvshows_{datestring}.csv"})

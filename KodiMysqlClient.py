@@ -71,6 +71,19 @@ class KodiMysqlClient:
 
         return ret
 
+    def get_movies_for_csv(self):
+
+        cursor = self.cnx.cursor()
+
+        query = "select c00 as title, premiered from movie order by title"
+        cursor.execute(query)
+
+        ret = []
+        for (title, premiered) in cursor:
+            ret.append((title, premiered))
+
+        return ret
+
     def get_movie_titles_by_search(self, search):
 
         cursor = self.cnx.cursor()
@@ -277,6 +290,21 @@ class KodiMysqlClient:
         ret = []
         for (idShow, c00) in cursor:
             ret.append({"id": idShow, "title": c00})
+
+        return ret
+
+    def get_tvshows_for_csv(self):
+
+        cursor = self.cnx.cursor()
+
+        query = "select s.c00 as title, s.c05 as start_date, count(idEpisode) as episodes, " \
+                "count(distinct (idSeason)) as seasons from tvshow s " \
+                "inner join episode e on s.idShow = e.idShow group by s.idShow order by title"
+        cursor.execute(query)
+
+        ret = []
+        for (title, start_date, episodes, seasons) in cursor:
+            ret.append((title, start_date, episodes, seasons))
 
         return ret
 
