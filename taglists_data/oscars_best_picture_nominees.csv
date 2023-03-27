@@ -1,320 +1,636 @@
 title,year,winner
-Lawrence of Arabia,1962,True
-The Longest Day,1962,False
-The Music Man,1962,False
-Mutiny on the Bounty,1962,False
-To Kill a Mockingbird,1962,False
-America America,1963,False
-Cleopatra,1963,False
-How the West Was Won,1963,False
-Lilies of the Field,1963,False
-Tom Jones,1963,True
-Becket,1964,False
-Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,1964,False
-Mary Poppins,1964,False
-My Fair Lady,1964,True
-Zorba the Greek,1964,False
-Darling,1965,False
-Doctor Zhivago,1965,False
-Ship of Fools,1965,False
-The Sound of Music,1965,True
-A Thousand Clowns,1965,False
-Alfie,1966,False
-A Man for All Seasons,1966,True
-The Russians Are Coming The Russians Are Coming,1966,False
-The Sand Pebbles,1966,False
-Who's Afraid of Virginia Woolf?,1966,False
-Bonnie and Clyde,1967,False
-Doctor Dolittle,1967,False
-The Graduate,1967,False
-Guess Who's Coming to Dinner,1967,False
-In the Heat of the Night,1967,True
-Funny Girl,1968,False
-The Lion in Winter,1968,False
-Oliver!,1968,True
-"Rachel, Rachel",1968,False
-Romeo and Juliet,1968,False
-Anne of the Thousand Days,1969,False
-Butch Cassidy and the Sundance Kid,1969,False
-"Hello, Dolly!",1969,False
-Midnight Cowboy,1969,True
-Z,1969,False
-Airport,1970,False
-Five Easy Pieces,1970,False
-Love Story,1970,False
-M*A*S*H,1970,False
-Patton,1970,True
-A Clockwork Orange,1971,False
-Fiddler on the Roof,1971,False
-The French Connection,1971,True
-The Last Picture Show,1971,False
-Nicholas and Alexandra,1971,False
-Cabaret,1972,False
-Deliverance,1972,False
-The Emigrants,1972,False
-The Godfather,1972,True
-Sounder,1972,False
-American Graffiti,1973,False
-Cries and Whispers,1973,False
-The Exorcist,1973,False
-The Sting,1973,True
-A Touch of Class,1973,False
-Chinatown,1974,False
-The Conversation,1974,False
-The Godfather: Part II,1974,True
-Lenny,1974,False
-The Towering Inferno,1974,False
-Barry Lyndon,1975,False
-Dog Day Afternoon,1975,False
-Jaws,1975,False
-Nashville,1975,False
-One Flew over the Cuckoo's Nest,1975,True
-All the President's Men,1976,False
-Bound for Glory,1976,False
-Network,1976,False
-Rocky,1976,True
-Taxi Driver,1976,False
-Annie Hall,1977,True
-The Goodbye Girl,1977,False
-Julia,1977,False
-Star Wars,1977,False
-The Turning Point,1977,False
-Coming Home,1978,False
-The Deer Hunter,1978,True
-Heaven Can Wait,1978,False
-Midnight Express,1978,False
-An Unmarried Woman,1978,False
-All That Jazz,1979,False
-Apocalypse Now,1979,False
-Breaking Away,1979,False
-Kramer vs. Kramer,1979,True
-Norma Rae,1979,False
-Coal Miner's Daughter,1980,False
-The Elephant Man,1980,False
-Ordinary People,1980,True
-Raging Bull,1980,False
-Tess,1980,False
-Atlantic City,1981,False
-Chariots of Fire,1981,True
-On Golden Pond,1981,False
-Raiders of the Lost Ark,1981,False
-Reds,1981,False
-E.T. the Extra-Terrestrial,1982,False
-Gandhi,1982,True
-Missing,1982,False
-Tootsie,1982,False
-The Verdict,1982,False
-The Big Chill,1983,False
-The Dresser,1983,False
-The Right Stuff,1983,False
-Tender Mercies,1983,False
-Terms of Endearment,1983,True
-Amadeus,1984,True
-The Killing Fields,1984,False
-A Passage to India,1984,False
-Places in the Heart,1984,False
-A Soldier's Story,1984,False
-The Color Purple,1985,False
-Kiss of the Spider Woman,1985,False
-Out of Africa,1985,True
-Prizzi's Honor,1985,False
-Witness,1985,False
-Children of a Lesser God,1986,False
-Hannah and Her Sisters,1986,False
-The Mission,1986,False
-Platoon,1986,True
-A Room with a View,1986,False
-Broadcast News,1987,False
-Fatal Attraction,1987,False
-Hope and Glory,1987,False
-The Last Emperor,1987,True
-Moonstruck,1987,False
-The Accidental Tourist,1988,False
-Dangerous Liaisons,1988,False
-Mississippi Burning,1988,False
-Rain Man,1988,True
-Working Girl,1988,False
-Born on the Fourth of July,1989,False
-Dead Poets Society,1989,False
-Driving Miss Daisy,1989,True
-Field of Dreams,1989,False
-My Left Foot,1989,False
-Awakenings,1990,False
-Dances With Wolves,1990,True
-Ghost,1990,False
-"The Godfather, Part III",1990,False
-GoodFellas,1990,False
-Beauty and the Beast,1991,False
-Bugsy,1991,False
-JFK,1991,False
-The Prince of Tides,1991,False
-The Silence of the Lambs,1991,True
-The Crying Game,1992,False
-A Few Good Men,1992,False
-Howards End,1992,False
-Scent of a Woman,1992,False
-Unforgiven,1992,True
-The Fugitive,1993,False
-In the Name of the Father,1993,False
-The Piano,1993,False
-The Remains of the Day,1993,False
-Schindler's List,1993,True
-Forrest Gump,1994,True
-Four Weddings and a Funeral,1994,False
-Pulp Fiction,1994,False
-Quiz Show,1994,False
-The Shawshank Redemption,1994,False
-Apollo 13,1995,False
-Babe,1995,False
-Braveheart,1995,True
-The Postman (Il Postino),1995,False
-Sense and Sensibility,1995,False
-The English Patient,1996,True
-Fargo,1996,False
-Jerry Maguire,1996,False
-Secrets & Lies,1996,False
-Shine,1996,False
-As Good as It Gets,1997,False
-The Full Monty,1997,False
-Good Will Hunting,1997,False
-L.A. Confidential,1997,False
-Titanic,1997,True
-Elizabeth,1998,False
-Life Is Beautiful,1998,False
-Saving Private Ryan,1998,False
-Shakespeare in Love,1998,True
-The Thin Red Line,1998,False
-American Beauty,1999,True
-The Cider House Rules,1999,False
-The Green Mile,1999,False
-The Insider,1999,False
-The Sixth Sense,1999,False
-Chocolat,2000,False
-"Crouching Tiger, Hidden Dragon",2000,False
-Erin Brockovich,2000,False
-Gladiator,2000,True
-Traffic,2000,False
-A Beautiful Mind,2001,True
-Gosford Park,2001,False
-In the Bedroom,2001,False
-The Lord of the Rings: The Fellowship of the Ring,2001,False
-Moulin Rouge!,2001,False
-Chicago,2002,True
-Gangs of New York,2002,False
-The Hours,2002,False
-The Lord of the Rings: The Two Towers,2002,False
-The Pianist,2002,False
-The Lord of the Rings: The Return of the King,2003,True
-Lost in Translation,2003,False
-Master and Commander: The Far Side of the World,2003,False
-Mystic River,2003,False
-Seabiscuit,2003,False
-The Aviator,2004,False
-Finding Neverland,2004,False
-Million Dollar Baby,2004,True
-Ray,2004,False
-Sideways,2004,False
-Brokeback Mountain,2005,False
-Capote,2005,False
-Crash,2005,True
-"Good Night, and Good Luck.",2005,False
-Munich,2005,False
-Babel,2006,False
-The Departed,2006,True
-Letters from Iwo Jima,2006,False
-Little Miss Sunshine,2006,False
-The Queen,2006,False
-Atonement,2007,False
-Juno,2007,False
-Michael Clayton,2007,False
-No Country for Old Men,2007,True
-There Will Be Blood,2007,False
-The Curious Case of Benjamin Button,2008,False
-Frost/Nixon,2008,False
-Milk,2008,False
-The Reader,2008,False
-Slumdog Millionaire,2008,True
-Avatar,2009,False
-The Blind Side,2009,False
-District 9,2009,False
-An Education,2009,False
-The Hurt Locker,2009,True
-Inglourious Basterds,2009,False
-Precious: Based on the Novel 'Push' by Sapphire,2009,False
-A Serious Man,2009,False
-Up,2009,False
-Up in the Air,2009,False
-Black Swan,2010,False
-The Fighter,2010,False
-Inception,2010,False
-The Kids Are All Right,2010,False
-The King's Speech,2010,True
-127 Hours,2010,False
-The Social Network,2010,False
-Toy Story 3,2010,False
-True Grit,2010,False
-Winter's Bone,2010,False
-The Artist,2011,True
-The Descendants,2011,False
-Extremely Loud & Incredibly Close,2011,False
-The Help,2011,False
-Hugo,2011,False
-Midnight in Paris,2011,False
-Moneyball,2011,False
-The Tree of Life,2011,False
-War Horse,2011,False
-Amour,2012,False
-Argo,2012,True
-Beasts of the Southern Wild,2012,False
-Django Unchained,2012,False
-Les Misérables,2012,False
-Life of Pi,2012,False
-Lincoln,2012,False
-Silver Linings Playbook,2012,False
-Zero Dark Thirty,2012,False
-American Hustle,2013,False
-Captain Phillips,2013,False
-Dallas Buyers Club,2013,False
-Gravity,2013,False
-Her,2013,False
-Nebraska,2013,False
-Philomena,2013,False
-12 Years a Slave,2013,True
-The Wolf of Wall Street,2013,False
-American Sniper,2014,False
-Birdman,2014,True
-Boyhood,2014,False
-The Grand Budapest Hotel,2014,False
-The Imitation Game,2014,False
-Selma,2014,False
-The Theory of Everything,2014,False
-Whiplash,2014,False
-The Big Short,2015,False
-Bridge of Spies,2015,False
-Brooklyn,2015,False
-Mad Max: Fury Road,2015,False
-The Martian,2015,False
-The Revenant,2015,False
-Room,2015,False
-Spotlight,2015,True
-Arrival,2016,False
-Fences,2016,False
-Hacksaw Ridge,2016,False
-Hell or High Water,2016,False
-Hidden Figures,2016,False
-La La Land,2016,False
-Lion,2016,False
-Manchester by the Sea,2016,False
-Moonlight,2016,True
-Call Me by Your Name,2017,False
-Darkest Hour,2017,False
-Dunkirk,2017,False
-Get Out,2017,False
-Lady Bird,2017,False
-Phantom Thread,2017,False
-The Post,2017,False
-The Shape of Water,2017,True
-"Three Billboards Outside Ebbing, Missouri",2017,False
+Lawrence of Arabia,1962,True
+
+The Longest Day,1962,False
+
+The Music Man,1962,False
+
+Mutiny on the Bounty,1962,False
+
+To Kill a Mockingbird,1962,False
+
+America America,1963,False
+
+Cleopatra,1963,False
+
+How the West Was Won,1963,False
+
+Lilies of the Field,1963,False
+
+Tom Jones,1963,True
+
+Becket,1964,False
+
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb,1964,False
+
+Mary Poppins,1964,False
+
+My Fair Lady,1964,True
+
+Zorba the Greek,1964,False
+
+Darling,1965,False
+
+Doctor Zhivago,1965,False
+
+Ship of Fools,1965,False
+
+The Sound of Music,1965,True
+
+A Thousand Clowns,1965,False
+
+Alfie,1966,False
+
+A Man for All Seasons,1966,True
+
+The Russians Are Coming The Russians Are Coming,1966,False
+
+The Sand Pebbles,1966,False
+
+Who's Afraid of Virginia Woolf?,1966,False
+
+Bonnie and Clyde,1967,False
+
+Doctor Dolittle,1967,False
+
+The Graduate,1967,False
+
+Guess Who's Coming to Dinner,1967,False
+
+In the Heat of the Night,1967,True
+
+Funny Girl,1968,False
+
+The Lion in Winter,1968,False
+
+Oliver!,1968,True
+
+"Rachel, Rachel",1968,False
+
+Romeo and Juliet,1968,False
+
+Anne of the Thousand Days,1969,False
+
+Butch Cassidy and the Sundance Kid,1969,False
+
+"Hello, Dolly!",1969,False
+
+Midnight Cowboy,1969,True
+
+Z,1969,False
+
+Airport,1970,False
+
+Five Easy Pieces,1970,False
+
+Love Story,1970,False
+
+M*A*S*H,1970,False
+
+Patton,1970,True
+
+A Clockwork Orange,1971,False
+
+Fiddler on the Roof,1971,False
+
+The French Connection,1971,True
+
+The Last Picture Show,1971,False
+
+Nicholas and Alexandra,1971,False
+
+Cabaret,1972,False
+
+Deliverance,1972,False
+
+The Emigrants,1972,False
+
+The Godfather,1972,True
+
+Sounder,1972,False
+
+American Graffiti,1973,False
+
+Cries and Whispers,1973,False
+
+The Exorcist,1973,False
+
+The Sting,1973,True
+
+A Touch of Class,1973,False
+
+Chinatown,1974,False
+
+The Conversation,1974,False
+
+The Godfather: Part II,1974,True
+
+Lenny,1974,False
+
+The Towering Inferno,1974,False
+
+Barry Lyndon,1975,False
+
+Dog Day Afternoon,1975,False
+
+Jaws,1975,False
+
+Nashville,1975,False
+
+One Flew over the Cuckoo's Nest,1975,True
+
+All the President's Men,1976,False
+
+Bound for Glory,1976,False
+
+Network,1976,False
+
+Rocky,1976,True
+
+Taxi Driver,1976,False
+
+Annie Hall,1977,True
+
+The Goodbye Girl,1977,False
+
+Julia,1977,False
+
+Star Wars,1977,False
+
+The Turning Point,1977,False
+
+Coming Home,1978,False
+
+The Deer Hunter,1978,True
+
+Heaven Can Wait,1978,False
+
+Midnight Express,1978,False
+
+An Unmarried Woman,1978,False
+
+All That Jazz,1979,False
+
+Apocalypse Now,1979,False
+
+Breaking Away,1979,False
+
+Kramer vs. Kramer,1979,True
+
+Norma Rae,1979,False
+
+Coal Miner's Daughter,1980,False
+
+The Elephant Man,1980,False
+
+Ordinary People,1980,True
+
+Raging Bull,1980,False
+
+Tess,1980,False
+
+Atlantic City,1981,False
+
+Chariots of Fire,1981,True
+
+On Golden Pond,1981,False
+
+Raiders of the Lost Ark,1981,False
+
+Reds,1981,False
+
+E.T. the Extra-Terrestrial,1982,False
+
+Gandhi,1982,True
+
+Missing,1982,False
+
+Tootsie,1982,False
+
+The Verdict,1982,False
+
+The Big Chill,1983,False
+
+The Dresser,1983,False
+
+The Right Stuff,1983,False
+
+Tender Mercies,1983,False
+
+Terms of Endearment,1983,True
+
+Amadeus,1984,True
+
+The Killing Fields,1984,False
+
+A Passage to India,1984,False
+
+Places in the Heart,1984,False
+
+A Soldier's Story,1984,False
+
+The Color Purple,1985,False
+
+Kiss of the Spider Woman,1985,False
+
+Out of Africa,1985,True
+
+Prizzi's Honor,1985,False
+
+Witness,1985,False
+
+Children of a Lesser God,1986,False
+
+Hannah and Her Sisters,1986,False
+
+The Mission,1986,False
+
+Platoon,1986,True
+
+A Room with a View,1986,False
+
+Broadcast News,1987,False
+
+Fatal Attraction,1987,False
+
+Hope and Glory,1987,False
+
+The Last Emperor,1987,True
+
+Moonstruck,1987,False
+
+The Accidental Tourist,1988,False
+
+Dangerous Liaisons,1988,False
+
+Mississippi Burning,1988,False
+
+Rain Man,1988,True
+
+Working Girl,1988,False
+
+Born on the Fourth of July,1989,False
+
+Dead Poets Society,1989,False
+
+Driving Miss Daisy,1989,True
+
+Field of Dreams,1989,False
+
+My Left Foot,1989,False
+
+Awakenings,1990,False
+
+Dances With Wolves,1990,True
+
+Ghost,1990,False
+
+"The Godfather, Part III",1990,False
+
+GoodFellas,1990,False
+
+Beauty and the Beast,1991,False
+
+Bugsy,1991,False
+
+JFK,1991,False
+
+The Prince of Tides,1991,False
+
+The Silence of the Lambs,1991,True
+
+The Crying Game,1992,False
+
+A Few Good Men,1992,False
+
+Howards End,1992,False
+
+Scent of a Woman,1992,False
+
+Unforgiven,1992,True
+
+The Fugitive,1993,False
+
+In the Name of the Father,1993,False
+
+The Piano,1993,False
+
+The Remains of the Day,1993,False
+
+Schindler's List,1993,True
+
+Forrest Gump,1994,True
+
+Four Weddings and a Funeral,1994,False
+
+Pulp Fiction,1994,False
+
+Quiz Show,1994,False
+
+The Shawshank Redemption,1994,False
+
+Apollo 13,1995,False
+
+Babe,1995,False
+
+Braveheart,1995,True
+
+The Postman (Il Postino),1995,False
+
+Sense and Sensibility,1995,False
+
+The English Patient,1996,True
+
+Fargo,1996,False
+
+Jerry Maguire,1996,False
+
+Secrets & Lies,1996,False
+
+Shine,1996,False
+
+As Good as It Gets,1997,False
+
+The Full Monty,1997,False
+
+Good Will Hunting,1997,False
+
+L.A. Confidential,1997,False
+
+Titanic,1997,True
+
+Elizabeth,1998,False
+
+Life Is Beautiful,1998,False
+
+Saving Private Ryan,1998,False
+
+Shakespeare in Love,1998,True
+
+The Thin Red Line,1998,False
+
+American Beauty,1999,True
+
+The Cider House Rules,1999,False
+
+The Green Mile,1999,False
+
+The Insider,1999,False
+
+The Sixth Sense,1999,False
+
+Chocolat,2000,False
+
+"Crouching Tiger, Hidden Dragon",2000,False
+
+Erin Brockovich,2000,False
+
+Gladiator,2000,True
+
+Traffic,2000,False
+
+A Beautiful Mind,2001,True
+
+Gosford Park,2001,False
+
+In the Bedroom,2001,False
+
+The Lord of the Rings: The Fellowship of the Ring,2001,False
+
+Moulin Rouge!,2001,False
+
+Chicago,2002,True
+
+Gangs of New York,2002,False
+
+The Hours,2002,False
+
+The Lord of the Rings: The Two Towers,2002,False
+
+The Pianist,2002,False
+
+The Lord of the Rings: The Return of the King,2003,True
+
+Lost in Translation,2003,False
+
+Master and Commander: The Far Side of the World,2003,False
+
+Mystic River,2003,False
+
+Seabiscuit,2003,False
+
+The Aviator,2004,False
+
+Finding Neverland,2004,False
+
+Million Dollar Baby,2004,True
+
+Ray,2004,False
+
+Sideways,2004,False
+
+Brokeback Mountain,2005,False
+
+Capote,2005,False
+
+Crash,2005,True
+
+"Good Night, and Good Luck.",2005,False
+
+Munich,2005,False
+
+Babel,2006,False
+
+The Departed,2006,True
+
+Letters from Iwo Jima,2006,False
+
+Little Miss Sunshine,2006,False
+
+The Queen,2006,False
+
+Atonement,2007,False
+
+Juno,2007,False
+
+Michael Clayton,2007,False
+
+No Country for Old Men,2007,True
+
+There Will Be Blood,2007,False
+
+The Curious Case of Benjamin Button,2008,False
+
+Frost/Nixon,2008,False
+
+Milk,2008,False
+
+The Reader,2008,False
+
+Slumdog Millionaire,2008,True
+
+Avatar,2009,False
+
+The Blind Side,2009,False
+
+District 9,2009,False
+
+An Education,2009,False
+
+The Hurt Locker,2009,True
+
+Inglourious Basterds,2009,False
+
+Precious: Based on the Novel 'Push' by Sapphire,2009,False
+
+A Serious Man,2009,False
+
+Up,2009,False
+
+Up in the Air,2009,False
+
+Black Swan,2010,False
+
+The Fighter,2010,False
+
+Inception,2010,False
+
+The Kids Are All Right,2010,False
+
+The King's Speech,2010,True
+
+127 Hours,2010,False
+
+The Social Network,2010,False
+
+Toy Story 3,2010,False
+
+True Grit,2010,False
+
+Winter's Bone,2010,False
+
+The Artist,2011,True
+
+The Descendants,2011,False
+
+Extremely Loud & Incredibly Close,2011,False
+
+The Help,2011,False
+
+Hugo,2011,False
+
+Midnight in Paris,2011,False
+
+Moneyball,2011,False
+
+The Tree of Life,2011,False
+
+War Horse,2011,False
+
+Amour,2012,False
+
+Argo,2012,True
+
+Beasts of the Southern Wild,2012,False
+
+Django Unchained,2012,False
+
+Les Misérables,2012,False
+
+Life of Pi,2012,False
+
+Lincoln,2012,False
+
+Silver Linings Playbook,2012,False
+
+Zero Dark Thirty,2012,False
+
+American Hustle,2013,False
+
+Captain Phillips,2013,False
+
+Dallas Buyers Club,2013,False
+
+Gravity,2013,False
+
+Her,2013,False
+
+Nebraska,2013,False
+
+Philomena,2013,False
+
+12 Years a Slave,2013,True
+
+The Wolf of Wall Street,2013,False
+
+American Sniper,2014,False
+
+Birdman,2014,True
+
+Boyhood,2014,False
+
+The Grand Budapest Hotel,2014,False
+
+The Imitation Game,2014,False
+
+Selma,2014,False
+
+The Theory of Everything,2014,False
+
+Whiplash,2014,False
+
+The Big Short,2015,False
+
+Bridge of Spies,2015,False
+
+Brooklyn,2015,False
+
+Mad Max: Fury Road,2015,False
+
+The Martian,2015,False
+
+The Revenant,2015,False
+
+Room,2015,False
+
+Spotlight,2015,True
+
+Arrival,2016,False
+
+Fences,2016,False
+
+Hacksaw Ridge,2016,False
+
+Hell or High Water,2016,False
+
+Hidden Figures,2016,False
+
+La La Land,2016,False
+
+Lion,2016,False
+
+Manchester by the Sea,2016,False
+
+Moonlight,2016,True
+
+Call Me by Your Name,2017,False
+
+Darkest Hour,2017,False
+
+Dunkirk,2017,False
+
+Get Out,2017,False
+
+Lady Bird,2017,False
+
+Phantom Thread,2017,False
+
+The Post,2017,False
+
+The Shape of Water,2017,True
+
+"Three Billboards Outside Ebbing, Missouri",2017,False
+
 Green Book,2018,True
 Black Panther,2018,False
 Blackkklansman,2018,False
@@ -323,3 +639,116 @@ The Favourite,2018,False
 Roma,2018,False
 A Star Is Born,2018,False
 Vice,2018,False
+
+Parasite,2019,True
+The Irishman,2019,False
+1917,2019,False
+Joker,2019,False
+Once Upon a Time in Hollywood,2019,False
+Ford v Ferrari,2019,False
+Marriage Story,2019,False
+Little Women,2019,False
+Jojo Rabbit,2019,False
+
+Nomadland,2020,True
+Minari,2020,False
+Judas and the Black Messiah,2020,False
+The Trial of the Chicago 7,2020,False
+Promising Young Woman,2020,False
+Sound of Metal,2020,False
+Mank,2020,False
+The Father,2020,False
+
+CODA,2021,True
+West Side Story,2021,False
+Drive My Car,2021,False
+Licorice Pizza,2021,False
+Dune,2021,False
+King Richard,2021,False
+Belfast,2021,False
+Don't Look Up,2021,False
+Nightmare Alley,2021,False
+The Power of the Dog,2021,False
+
+Everything Everywhere All at Once,2022,True
+Top Gun: Maverick,2022,False
+The Fabelmans,2022,False
+The Banshees of Inisherin,2022,False
+All Quiet on the Western Front,2022,False
+Avatar: THe Way of Water,2022,False
+Tar,2022,False
+Elvis,2022,False
+Triangle of Sadness,2022,False
+Women Talking,2022,False
+
+West Side Story,1961,True
+Fanny,1961,False
+Judgment at Nuremberg,1961,False
+The Guns of Navarone,1961,False
+The Hustler,1961,False
+
+The Apartment,1960,True
+Elmer Gantry,1960,False
+Sons and Lovers,1960,False
+The Alamo,1960,False
+The Sundowners,1960,False
+
+Ben-Hur,1959,True
+Anatomy of a Murder,1959,False
+Room at the Top,1959,False
+The Diary of Anne Frank,1959,False
+The Nun's Story,1959,False
+
+Gigi,1958,True
+Auntie Mame,1958,False
+Cat on a Hot Tin Roof,1958,False
+Separate Tables,1958,False
+The Defiant Ones,1958,False
+
+The Bridge on the River Kwai,1957,True
+12 Angry Men,1957,False
+Peyton Place,1957,False
+Sayonara,1957,False
+Witness for the Prosecution,1957,False
+
+Around the World in Eighty Days,1956.True
+Giant,1956,False,
+The Ten Commandments,1956,False
+Friendly Persuasion,1956,False
+The King and I,1956,False
+
+Marty,1955,True
+Love Is a Many-Splendored Thing,1955,False
+Mister Roberts,1955,False
+Picnic,1955,False
+The Rose Tattoo,1955,False
+
+On the Waterfront,1954,True
+The Caine Mutiny,1954,False
+Seven Brides for Seven Brothers,1954,False
+The Country Girl,1954,False
+Three Coins in the Fountain,1954,False
+
+From Here to Eternity,1953,True
+Shane,1953,False
+Julius Caesar,1953,False
+Roman Holiday,1953,False
+The Robe,1953,False
+
+The Greatest Show on Earth,1952,True
+High Noon,1952,False
+Ivanhoe,1952,False
+Moulin Rouge,1952,False
+The Quiet Man,1952,False
+
+An American in Paris,1951,True
+A Place in the Sun,1951,False
+A Streetcar Named Desire,1951,False
+Decision Before Dawn,1951,False
+Quo Vadis,1951,False
+
+All About Eve,1950,True
+Sunset Blvd.,1950,False
+Born Yesterday,1950,False
+Father of the Bride,1950,False
+King Solomon's Mines,1950,False
