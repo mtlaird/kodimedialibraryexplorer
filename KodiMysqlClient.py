@@ -23,7 +23,10 @@ class KodiMysqlClient:
             self.kodi_mysql_address = current_app.config["mysqlserver-host"]
         except KeyError:
             self.kodi_mysql_address = "127.0.0.1"
-        self.kodi_mysql_video_db = "MyVideos119"
+        try:
+            self.kodi_mysql_video_db = current_app.config["mysql-video-db"]
+        except KeyError:
+            self.kodi_mysql_video_db = "MyVideos121"
 
         self.cnx = mysql.connector.connect(
             user="kodi",

@@ -2,4 +2,5 @@
   "webserver-host": "127.0.0.1",
   "mysqlserver-host": "127.0.01",
   "tmdb-api-key": "xxxx"
+  "mysql-video-db" "MyVideos121"
 }
